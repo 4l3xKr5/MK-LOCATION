@@ -1,0 +1,33 @@
+# Information Architecture
+
+## Navigation
+
+- Work
+- Services
+- Studio
+- Contact
+
+## Homepage
+
+### Hero
+
+Objectif :
+faire comprendre immédiatement...
+
+### Work
+
+Objectif :
+apporter la preuve...
+
+### Services
+
+Objectif :
+...
+
+### Studio
+
+...
+
+### Contact
+
+...

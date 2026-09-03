@@ -1,0 +1,31 @@
+Je considère ces éléments obligatoires :
+
+Produit
+ce qu'on construit ;
+pourquoi ;
+public principal ;
+résultat attendu.
+Scope
+fonctionnalités indispensables ;
+fonctionnalités explicitement exclues.
+Business
+vrais services/produits ;
+CTA principal ;
+contraintes réelles ;
+interdiction d’inventer des preuves.
+UX
+pages essentielles ;
+parcours principal.
+Design
+direction générale ;
+assets existants ;
+références importantes ;
+interdits importants.
+Technique
+contraintes technologiques réellement imposées ;
+destination de déploiement si imposée ;
+services externes obligatoires.
+Gouvernance
+ce qui est LOCKED ;
+ce qui est OPEN ;
+définition de terminé.

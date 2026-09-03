@@ -1,0 +1,31 @@
+Si ton site utilise des données, explique-les avant de coder.
+
+# Data
+
+## Sources
+
+[...]
+
+## Entities
+
+### Project
+
+Fields:
+- id
+- title
+- slug
+- description
+- image
+- category
+
+### Service
+
+...
+
+## Sensitive data
+
+[...]
+
+## Sample data
+
+samples/data/projects.json

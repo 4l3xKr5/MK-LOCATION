@@ -1,0 +1,31 @@
+# Scope
+
+## Obligatoire
+
+- ...
+- ...
+- ...
+
+## Souhaitable
+
+- ...
+- ...
+
+## Hors périmètre
+
+- ...
+- ...
+
+Je créerais un tableau dans 03-SCOPE.md
+
+ujet	Statut	Codex
+Objectif business	LOCKED	ne change pas
+Audience	LOCKED	ne change pas
+Arborescence pages	PREFERRED	peut challenger
+Next.js	LOCKED	imposé
+Tailwind	PREFERRED	peut challenger
+State management	OPEN	décide si nécessaire
+Animations	OPEN	propose
+Témoignages	UNKNOWN	ne doit pas inventer
+Architecture composants	OPEN	décide
+Hébergement	LOCKED	imposé

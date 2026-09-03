@@ -1,0 +1,52 @@
+Avant de commencer, ne rédige pas nécessairement cinquante tickets extrêmement détaillés.
+
+Définis les grandes dépendances.
+
+Par exemple :
+
+PHASE 0
+Validation architecture
+
+PHASE 1
+Foundation
+- project scaffold
+- tokens
+- fonts
+- global layout
+
+PHASE 2
+Vertical slice
+- header
+- hero
+- footer
+
+PHASE 3
+Core pages
+
+PHASE 4
+Interactions
+
+PHASE 5
+Content integration
+
+PHASE 6
+QA
+
+PHASE 7
+Deployment
+
+Pourquoi une vertical slice très tôt ?
+
+Parce qu'elle permet de vérifier rapidement :
+
+architecture
++
+design
++
+responsive
++
+build
++
+déploiement
+
+avant d’avoir construit tout le site.

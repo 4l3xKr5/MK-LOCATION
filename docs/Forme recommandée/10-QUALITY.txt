@@ -1,0 +1,22 @@
+# Definition of Done
+
+A task is complete only when:
+
+- implementation satisfies acceptance criteria;
+- TypeScript passes;
+- lint passes;
+- relevant automated tests pass;
+- production build passes;
+- no unrelated files are modified;
+- responsive behavior is verified;
+- keyboard interaction works;
+- semantic HTML is preserved;
+- obvious accessibility issues are resolved.
+
+Puis ajoute éventuellement :
+
+Performance
+SEO
+accessibility
+security
+browser compatibility
