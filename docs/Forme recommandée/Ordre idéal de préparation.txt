@@ -1,0 +1,16 @@
+# Ordre idéal de préparation
+
+1. Rassembler les sources réelles dans `references/`.
+2. Définir le produit dans `01-PRODUCT.md`.
+3. Définir l'audience dans `02-AUDIENCE.md`.
+4. Verrouiller le périmètre et les marges de décision dans `03-SCOPE.md`.
+5. Décrire le parcours principal et les pages essentielles dans `04-UX.md`.
+6. Inventorier le contenu réel, provisoire et manquant dans `05-CONTENT.md`.
+7. Définir la marque, puis le système de design dans `06-BRAND.md` et `07-DESIGN-SYSTEM.md`.
+8. Choisir seulement ensuite l'architecture technique dans `08-TECHNICAL.md`.
+9. Décrire les données et leur sensibilité dans `09-DATA.md` si elles existent.
+10. Fixer les contrôles et preuves attendus dans `10-QUALITY.md`.
+11. Enregistrer les décisions durables dans `11-DECISIONS.md`.
+12. Organiser les dépendances de réalisation dans `12-ROADMAP.md`.
+
+Avant le code, utiliser `premier prompt.txt` pour vérifier les contradictions, inconnues et risques. Une information peut rester `UNKNOWN` ; elle ne doit pas être remplacée par une invention pour accélérer le démarrage.

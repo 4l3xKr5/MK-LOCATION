@@ -2,6 +2,8 @@
 
 Ce dépôt sert à cadrer un site avant son implémentation. Il sépare les faits métier, les décisions, le design, la technique et la qualité afin que chaque intervention puisse s'appuyer sur une source claire.
 
+Les 12 documents numérotés restent vierges dans le template. Lorsque l'utilisateur demande de préparer un nouveau projet, Codex lit les guides correspondants dans `docs/Forme recommandée/`, structure les fichiers `.md` et renseigne uniquement les informations réellement établies.
+
 ## Démarrage d'un nouveau site
 
 1. Lister les éléments réellement disponibles dans `references/` : identité visuelle, contenu et captures d'écran.
@@ -22,8 +24,7 @@ Le contenu renseigné dans `docs/` devient la source de vérité du site. Les mo
 - `references/visual`, `references/content`, `references/screenshots` : ressources de départ validées.
 - `public/assets` : assets qui seront servis par le site.
 - `samples/data` : données d'exemple non sensibles.
-- `.agents/skills` : skills locaux pour la direction visuelle, l'UX et le mouvement.
-- `.agent/skills/git-worktree-safe-workflow` : méthode de travail Git à suivre dès qu'un dépôt est initialisé et qu'une modification de code est prévue.
+- `.agents/skills` : skills locaux pour le workflow Git, la direction visuelle, l'UX et le mouvement.
 
 ## Versionnement
 
