@@ -13,7 +13,7 @@ Avant toute modification, lire les documents utiles de `docs/` :
 - technique, données et qualité : `08-TECHNICAL.md`, `09-DATA.md`, `10-QUALITY.md` ;
 - décisions et ordre d'exécution : `11-DECISIONS.md`, `12-ROADMAP.md`.
 
-Les modes d'emploi et les exemples de structure restent dans `docs/Forme recommandée/`. Utiliser le fichier correspondant pour remplir un document, sans dupliquer ses explications dans les documents de projet.
+Les modes d'emploi et les exemples de structure restent dans `docs/Forme recommandée/`. Lorsque l'utilisateur demande de préparer ou d'initialiser un projet, Codex utilise le guide correspondant pour structurer et remplir chaque document `.md`. Le template lui-même conserve ces 12 documents vierges. Ne pas automatiser leur rédaction avec un script et ne pas recopier les explications des guides dans les documents de projet.
 
 ## Décisions et contenu
 
@@ -30,7 +30,7 @@ La demande explicite de l'utilisateur et les contraintes du projet priment toujo
 
 `motion-design` n'ajoute du mouvement que s'il clarifie l'interface ou renforce cette intention, avec sobriété, performance et `prefers-reduced-motion`. Utiliser `gsap-web` seulement lorsqu'une animation complexe le justifie et que CSS ou l'outil natif du framework ne suffit pas.
 
-Les skills de design sont dans `.agents/skills/`. Le workflow Git est dans `.agent/skills/git-worktree-safe-workflow/` ; l'appliquer avant toute modification d'un dépôt Git existant.
+Tous les skills du dépôt sont dans `.agents/skills/`. Appliquer `git-worktree-safe-workflow` avant toute modification d'un dépôt Git existant ; utiliser ensuite les skills de design seulement lorsque leur périmètre correspond à la demande.
 
 ## Validation
 
