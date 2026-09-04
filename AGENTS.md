@@ -13,7 +13,9 @@ Avant toute modification, lire les documents utiles de `docs/` :
 - technique, données et qualité : `08-TECHNICAL.md`, `09-DATA.md`, `10-QUALITY.md` ;
 - décisions et ordre d'exécution : `11-DECISIONS.md`, `12-ROADMAP.md`.
 
-Les modes d'emploi et les exemples de structure restent dans `docs/Forme recommandée/`. Lorsque l'utilisateur demande de préparer ou d'initialiser un projet, Codex utilise le guide correspondant pour structurer et remplir chaque document `.md`. Le template lui-même conserve ces 12 documents vierges. Ne pas automatiser leur rédaction avec un script et ne pas recopier les explications des guides dans les documents de projet.
+Les modes d'emploi et les exemples de structure restent dans les guides `.md` de `docs/Forme recommandée/`. Lorsque l'utilisateur demande de préparer ou d'initialiser un projet, Codex utilise le guide correspondant pour structurer et remplir chaque document `.md`. Le template lui-même conserve ces 12 documents vierges. Ne pas automatiser leur rédaction avec un script et ne pas recopier les explications des guides dans les documents de projet.
+
+Avant tout code, appliquer les quatre portes décrites dans `docs/Forme recommandée/Ordre idéal de préparation.md`. La porte 4 exige une validation explicite de l'utilisateur.
 
 ## Décisions et contenu
 
@@ -21,6 +23,7 @@ Les modes d'emploi et les exemples de structure restent dans `docs/Forme recomma
 - `PREFERRED` : peut être remis en question en expliquant l'incidence.
 - `OPEN` : peut être proposé et décidé lorsque nécessaire.
 - `UNKNOWN` : information manquante ; ne pas la présenter comme un fait.
+- `N/A` : élément vérifié comme non applicable ; indiquer pourquoi.
 - Ne jamais inventer de services, clients, témoignages, chiffres, prix ou capacités métier.
 - Conserver les changements dans le périmètre de la demande et éviter les dépendances sans besoin concret.
 
