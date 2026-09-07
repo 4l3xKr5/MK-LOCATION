@@ -1,0 +1,32 @@
+---
+import '../styles/global.css';
+import '../styles/pages.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../config/site';
+import archivoFont from '../../node_modules/@fontsource-variable/archivo/files/archivo-latin-standard-normal.woff2?url';
+import instrumentFont from '../../node_modules/@fontsource-variable/instrument-sans/files/instrument-sans-latin-wght-normal.woff2?url';
+interface Props { title: string; description: string; dark?: boolean; noindex?: boolean }
+const { title, description, dark = false, noindex = false } = Astro.props;
+const robots = site.preview || noindex ? 'noindex, nofollow' : 'index, follow';
+const canonical = new URL(Astro.url.pathname, site.url).href;
+---
+<!doctype html>
+<html lang="fr" id="top">
+  <head>
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preload" href={archivoFont} as="font" type="font/woff2" crossorigin /><link rel="preload" href={instrumentFont} as="font" type="font/woff2" crossorigin />
+    <title>{title} | MK Location</title><meta name="description" content={description} /><meta name="robots" content={robots} />
+    {!site.preview && <link rel="canonical" href={canonical} />}
+    <meta name="theme-color" content="#171A18" /><link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" /><meta property="og:locale" content="fr_FR" /><meta property="og:site_name" content="MK Location" />
+    <meta property="og:title" content={`${title} | MK Location`} /><meta property="og:description" content={description} /><meta property="og:image" content={new URL('/social-card.png', site.url).href} /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" /><meta property="og:image:alt" content="MK Location — Du besoin au terrain. Matériel, véhicules, Annay et alentours." />
+    {!site.preview && <meta property="og:url" content={canonical} />}<meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body class:list={{ 'page-dark': dark }}>
+    <a href="#main" class="skip-link">Aller au contenu</a>
+    <Header />
+    <main id="main" tabindex="-1"><slot /></main>
+    <Footer />
+  </body>
+</html>

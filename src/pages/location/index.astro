@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import EquipmentIndex from '../../components/EquipmentIndex.astro';
+import Button from '../../components/Button.astro';
+---
+<Layout title="Matériel et véhicules à louer à Annay" description="Découvrez le parc MK Location : mini-pelle, camion benne, bétonnière, plateau et utilitaire. Choisissez un équipement et préparez votre demande.">
+  <section class="container page-heading"><p class="eyebrow"><span class="signal-square"></span> MK / Le parc — 01 à 05</p><h1>LE MATÉRIEL.<br /><span class="text-outline">VOTRE PROJET.</span></h1><p class="lead">Pour terrasser, préparer ou transporter.<br />Trouvez l’équipement adapté à votre besoin.</p></section>
+  <section class="container catalog-section" aria-label="Les cinq équipements"><EquipmentIndex full /></section>
+  <section class="container section-pad practical-grid"><article><span class="eyebrow">La durée</span><h2>Un jour.<br />Ou plus longtemps.</h2><p>Courte et longue durée : indiquez vos dates et votre besoin. Les conditions sont précisées avec MK.</p></article><article><span class="eyebrow">La mise à disposition</span><h2>Au lieu<br />convenu.</h2><p>La livraison constitue le principal mode de mise à disposition. Les possibilités dépendent du matériel et de votre demande.</p><a class="text-link" href="/livraison-annay">Livraison & zone ↗</a></article></section>
+  <section class="section-coal"><div class="container closing-cta"><p class="eyebrow">Un doute sur le matériel ?</p><h2>PARTEZ<br />DE VOTRE BESOIN.</h2><Button href="/demande-location">Décrire mon projet</Button></div></section>
+</Layout>

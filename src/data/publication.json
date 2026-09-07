@@ -1,0 +1,15 @@
+{
+  "approved": false,
+  "approvedBy": "",
+  "approvedOn": "",
+  "prices": { "confirmed": false, "taxLabel": "", "miniPelleDriverNote": "" },
+  "legal": { "confirmed": false, "companyName": "", "retention": "" },
+  "offerPhotos": {
+    "mini-pelle": [],
+    "camion-benne": [],
+    "betonniere": [],
+    "plateau-remorque-35t": [],
+    "utilitaire": [],
+    "chauffeur": []
+  }
+}

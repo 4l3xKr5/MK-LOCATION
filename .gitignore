@@ -33,3 +33,11 @@ Thumbs.db
 Desktop.ini
 .idea/
 .vscode/
+
+# Astro et preuves générées
+.astro/
+test-results/
+playwright-report/
+artifacts/qa/*.png
+artifacts/qa/*.json
+artifacts/qa/*.html

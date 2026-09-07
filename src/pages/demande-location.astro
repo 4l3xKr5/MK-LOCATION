@@ -1,0 +1,9 @@
+---
+import Layout from '../layouts/Layout.astro';
+import RequestForm from '../components/RequestForm.astro';
+import Contact from '../components/Contact.astro';
+---
+<Layout title="Demander une location à Annay" description="Précisez votre matériel, vos dates et votre commune. MK Location vous recontacte pour organiser la location et la livraison.">
+  <section class="container page-heading"><p class="eyebrow"><span class="signal-square"></span> MK / Votre demande</p><h1>UN BESOIN ?<br /><span class="text-outline">ON S’ORGANISE.</span></h1><p class="lead">Quelques précisions pour mettre votre projet en mouvement.</p></section>
+  <section class="container form-layout"><div><RequestForm /></div><aside class="form-aside"><p class="eyebrow">La suite, simplement</p><ol class="aside-steps"><li><span>01</span><p>Vous précisez<br /><strong>votre besoin.</strong></p></li><li><span>02</span><p>Nous vérifions<br /><strong>les modalités.</strong></p></li><li><span>03</span><p>Nous organisons<br /><strong>la mise à disposition.</strong></p></li></ol><p class="small-note">Votre demande ne constitue pas une réservation. La disponibilité et les conditions sont confirmées directement avec MK.</p><Contact compact /></aside></section>
+</Layout>

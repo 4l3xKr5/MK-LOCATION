@@ -1,0 +1,11 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../config/site';
+import * as mentions from '../content/legal/mentions-legales.md';
+import * as privacy from '../content/legal/confidentialite.md';
+import * as terms from '../content/legal/conditions-location.md';
+export function getStaticPaths() { return [ { params: { legal: 'mentions-legales' }, props: { content: mentions } }, { params: { legal: 'confidentialite' }, props: { content: privacy } }, { params: { legal: 'conditions-location' }, props: { content: terms } } ]; }
+const { content } = Astro.props;
+const { Content, frontmatter } = content;
+---
+<Layout title={frontmatter.title} description={frontmatter.description}><article class="container prose-page"><p class="eyebrow"><span class="signal-square"></span> MK / Informations</p><h1>{frontmatter.title}</h1>{site.preview && <aside class="legal-state">Document de préversion. Les informations définitives seront intégrées avant l’ouverture publique.</aside>}<Content /></article></Layout>

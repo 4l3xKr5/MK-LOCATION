@@ -1,0 +1,68 @@
+---
+import type { VisualKind } from '../data/catalog';
+import { publication } from '../config/site';
+interface Props { kind?: VisualKind; slug?: string; index?: string; dark?: boolean; class?: string; priority?: boolean }
+const { kind = 'excavator', slug = 'mini-pelle', index = '01', dark = false, class: className = '', priority = false } = Astro.props;
+const photo = publication.offerPhotos[slug]?.find((item) => item.verified);
+---
+<figure class:list={['equipment-visual', `visual--${kind}`, className, { 'visual--dark': dark, 'visual--photo': !!photo }]}>
+  {photo ? <img src={photo.src} alt={photo.alt} width="1200" height="900" loading={priority ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : 'auto'} decoding="async" /> : <>
+    <span class="visual-index" aria-hidden="true">{index}</span>
+    <svg class="equipment-drawing" viewBox="0 0 800 560" fill="none" aria-hidden="true">
+      <ellipse cx="421" cy="476" rx="293" ry="17" fill="currentColor" opacity=".07" />
+      <path d="M45 489H750M66 507H258M602 507H739" stroke="currentColor" opacity=".22" />
+      {kind === 'excavator' && <g stroke="#26332D" stroke-width="3" stroke-linejoin="round">
+        <path d="m362 259 88-133 132 79-12 18-120-57-65 119z" fill="#AEBAA5" />
+        <path d="m569 213 48 45 45 172-23 9-42-158-43-47z" fill="#A4B19C" />
+        <path d="m629 419 54-20 28 57-72 9-31-25z" fill="#727C70" />
+        <path d="m639 465 57 5 15-14M642 435l41-15" />
+        <path d="m393 245 61-90m123 74 31 34 35 139" stroke="#E5E8DF" stroke-width="8" />
+        <path d="M310 352V224l59-27 47 18 13 129z" fill="#7E8D7A" />
+        <path d="m321 229 45-19 34 16 12 73-90 11z" fill="#233B35" />
+        <path d="m367 212 2 91m-41-66 29-12" stroke="#BDCAC0" />
+        <path d="M217 325h121v72H203v-44z" fill="#B0BAA6" />
+        <path d="M206 370h233v39H206z" fill="#8C9983" />
+        <path d="M249 389h142v38H249z" fill="#4A594E" />
+        <path d="M225 415h193c58 0 60 64 0 64H225c-50 0-50-64 0-64z" fill="#2B342D" />
+        <path d="M234 430h176c31 0 31 33 0 33H234c-28 0-28-33 0-33z" fill="#62725D" />
+        {[239,276,313,350,387].map((x) => <circle cx={x} cy="447" r="11" fill="#8E9B82" />)}
+        <path d="M219 337h60m-61 10h60m-61 10h60" stroke="#5A6854" />
+        <path d="M297 329h25v37h-25z" fill="#FF5033" stroke="none" />
+        <path d="m325 393 144 11 37 48-29 4-34-29-118-12z" fill="#61715C" />
+        <circle cx="450" cy="145" r="10" fill="#4D5F4F" /><circle cx="575" cy="221" r="9" fill="#4D5F4F" />
+      </g>}
+      {(kind === 'truck' || kind === 'van') && <g stroke="#26332D" stroke-width="3" stroke-linejoin="round">
+        <path d={kind === 'van' ? 'M160 242h345l69 85 76 36v79H147V268z' : 'M415 277h100l66 70 69 17v78H410z'} fill="#AFB9A5" />
+        <path d="m439 291 65 0 44 57H439z" fill="#29443B" />
+        <path d="m150 383 500 7v49H150z" fill="#7B8972" />
+        {kind === 'truck' && <><path d="M150 275h242v95H147z" fill="#A2AE97" /><path d="M174 285v73m73-73v73m73-73v73" stroke="#67775E" /><path d="M142 263h260v18H142z" fill="#CAD0BE" /></>}
+        {kind === 'van' && <><path d="M181 260h224v117H179z" fill="#BAC4AE" /><path d="M337 257v126m91-124v166" stroke="#798A6F" /><path d="M359 328h23" /></>}
+        <path d="M585 374h47v16h-47z" fill="#E5E8DF" /><path d="M149 393h15v20h-15z" fill="#FF5033" />
+        {[254,547].map((x) => <g><circle cx={x} cy="437" r="44" fill="#27332C" /><circle cx={x} cy="437" r="24" fill="#829378" /><circle cx={x} cy="437" r="8" fill="#BCC8B0" /></g>)}
+      </g>}
+      {kind === 'mixer' && <g stroke="#26332D" stroke-width="3" stroke-linejoin="round">
+        <path d="m320 337-47 124h26l55-116m91-7 73 123h-28l-73-123" fill="#6B7F68" />
+        <path d="m308 277 55-104 102-9 70 82-33 99-127 22z" fill="#AEBB9D" />
+        <ellipse cx="366" cy="224" rx="51" ry="66" transform="rotate(30 366 224)" fill="#364C3F" /><ellipse cx="366" cy="224" rx="34" ry="46" transform="rotate(30 366 224)" fill="#1D3029" />
+        <path d="m444 171 35 97-30 85M301 302l204 49M353 366v27h121v-37" />
+        <circle cx="550" cy="320" r="45" stroke="#7A8D70" stroke-width="11" /><path d="M519 349l62-57m-53 0 45 58" />
+        <circle cx="292" cy="450" r="29" fill="#29382E" /><circle cx="292" cy="450" r="14" fill="#96A685" /><circle cx="485" cy="450" r="29" fill="#29382E" /><circle cx="485" cy="450" r="14" fill="#96A685" />
+        <path d="M386 374h29v20h-29z" fill="#FF5033" stroke="none" />
+      </g>}
+      {kind === 'trailer' && <g stroke="#26332D" stroke-width="3" stroke-linejoin="round">
+        <path d="m141 357 386-45 94 47-370 66z" fill="#BDC7B2" /><path d="m251 425 370-66v30l-370 68-110-63v-37z" fill="#85957A" />
+        <path d="m621 374 76 61-11 13-89-43m100 30h39v16h-48" fill="#7C8F74" />
+        {[180,230,280,330,380,430,480].map((x) => <path d={`m${x} ${350 - (x - 180) * .12} 103 56`} stroke="#899B7D" />)}
+        {[331,431].map((x) => <g><circle cx={x} cy={447 - (x - 331) * .18} r="31" fill="#2F3B30" /><circle cx={x} cy={447 - (x - 331) * .18} r="17" fill="#B0BFA0" /></g>)}
+        <path d="m146 387 18 11v15l-18-11z" fill="#FF5033" stroke="none" /><path d="m161 331-5 40m418-69 10 48" />
+      </g>}
+      {kind === 'car' && <g stroke="#A5B6AF" stroke-width="2" stroke-linejoin="round">
+        <path d="m124 371 82-39 88-73 155-8 101 76 111 29 36 52-8 29-556 0-22-23z" fill="#46615A" />
+        <path d="m238 330 67-59 133-6 82 63z" fill="#132D28" /><path d="m362 269-6 61m-77 9-12 79m178-79 8 73" />
+        <path d="m140 382 70-25 323-11 110 28m-423 41 300-1" stroke="#A5B6AF" /><path d="m594 371 68 15 14 18-76-8z" fill="#DDE5DB" /><path d="m133 379 16-8 7 26-17 0z" fill="#FF5033" stroke="none" />
+        {[234,568].map((x) => <g><circle cx={x} cy="424" r="49" fill="#122A24" /><circle cx={x} cy="424" r="31" fill="#617A6E" /><path d={`M${x} 398v52m-26-26h52m-45-19 38 38m-38 0 38-38`} stroke="#C2CBC1" stroke-width="3" /><circle cx={x} cy="424" r="7" fill="#122A24" /></g>)}
+      </g>}
+    </svg>
+    <figcaption class="visual-caption"><span class="visual-corner" aria-hidden="true"></span>Illustration provisoire · photo du parc à venir</figcaption>
+  </>}
+</figure>
