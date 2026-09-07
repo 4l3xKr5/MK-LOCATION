@@ -43,6 +43,27 @@ test('navigation mobile au clavier, fermeture Échap et réduction des animation
   await page.keyboard.press('Escape');
   await expect(page.getByRole('dialog')).not.toBeVisible(); await expect(open).toBeFocused();
   expect(await page.locator('.hero h1').evaluate((el) => getComputedStyle(el).animationName)).toBe('none');
+  expect(await page.locator('[data-reveal]').evaluateAll((elements) => elements.every((element) => getComputedStyle(element).opacity === '1'))).toBe(true);
+});
+test('signature de mouvement, reveal au scroll et aperçu matériel restent fluides', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
+  await expect(page.locator('html')).toHaveClass(/motion-ready/);
+
+  const focus = page.locator('.mini-focus .focus-copy');
+  await expect(focus).not.toHaveClass(/is-revealed/);
+  await focus.scrollIntoViewIfNeeded();
+  await expect(focus).toHaveClass(/is-revealed/);
+  await expect.poll(async () => focus.evaluate((element) => getComputedStyle(element).clipPath)).toContain('100% 100%');
+
+  const button = page.getByRole('link', { name: 'Voir le matériel' });
+  const shutterBefore = await button.evaluate((element) => getComputedStyle(element, '::before').transform);
+  await button.hover();
+  await expect.poll(async () => button.evaluate((element) => getComputedStyle(element, '::before').transform)).not.toBe(shutterBefore);
+
+  await page.locator('[data-index-item="camion-benne"]').hover();
+  await expect(page.locator('[data-index-preview="camion-benne"]')).toBeVisible();
+  await expect(page.locator('[data-index-item="camion-benne"]')).toHaveClass(/is-active/);
 });
 test('WhatsApp contextualisé et téléphone utilisent la configuration de test', async ({ page }) => {
   await page.goto('/location/mini-pelle');

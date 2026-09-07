@@ -88,3 +88,16 @@ Après le signalement utilisateur, git fetch et git ls-remote confirment que Git
 Contrôles relancés : lint réussi, check sans erreur/avertissement/indication, 9 tests unitaires réussis, build de 17 pages réussi. JSON lu sans erreur ; dist/index.html et dist/location/mini-pelle/index.html présents. Les tests navigateur et Lighthouse ci-dessus restent ceux de la recette applicative initiale, sans nouveau lancement pour ce changement de configuration.
 
 La validation du build dans le compte Vercel et des routes publiques reste en attente de publication du code. Aucun push ni intégration main effectué ; la configuration du compte n’a pas été inspectée. Les formulaires doivent rester désactivés sur cet hébergement.
+
+## Complément — finition mouvement premium, 8 septembre 2026
+
+La finition mouvement est isolée sur `work/premium-css-motion-20260907-2302`, base `origin/main` au commit `28245d0`. Elle ajoute une couche CSS native dédiée, un observateur d’intersection minimal pour les reveals et des attributs explicites sur les compositions concernées. Aucune dépendance n’a été ajoutée.
+
+- Signature : déploiement par masque et pan coupé, entrées éditoriales, profondeur décorative liée au scroll sur desktop et transitions de page natives en amélioration progressive.
+- Interactions : boutons, liens, catalogue, menu mobile, FAQ et étapes de formulaire ; mouvements courts, interruptibles et sans changement de layout.
+- Accessibilité : contenu lisible sans effet, contraste conservé pendant les reveals, navigation clavier inchangée et état final immédiat avec `prefers-reduced-motion`.
+- Responsive : amplitudes et durées réduites sur mobile ; aucun déplacement parallaxe sur petit écran.
+
+Contrôles exécutés après correction du contraste transitoire : lint réussi, vérification Astro/TypeScript sans erreur ni avertissement, 9 tests unitaires réussis, build statique de 17 pages réussi et 21 scénarios Playwright réussis. Les scénarios couvrent désormais explicitement le reveal au scroll, le volet de bouton et le changement d’aperçu matériel. Axe ne relève aucune violation dans les parcours automatisés à 375 et 1440 px.
+
+Lighthouse mobile sur le build de production : accueil 100 performance / 100 accessibilité / 100 bonnes pratiques, LCP 1 811 ms, CLS 0 ; mini-pelle 100 / 100 / 100, LCP 1 808 ms, CLS 0. Le score SEO 63 reste intentionnellement limité par le `noindex` de préversion. Mesures locales du 7 septembre 2026 à 22:08 UTC ; elles ne remplacent pas une mesure sur appareils et réseau réels.

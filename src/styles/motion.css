@@ -1,0 +1,882 @@
+:root {
+  --motion-quick: 180ms;
+  --motion-standard: 300ms;
+  --motion-slow: 550ms;
+  --motion-reveal: 720ms;
+  --motion-ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-ease-exit: cubic-bezier(0.7, 0, 0.84, 0);
+  --motion-ease-shift: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@view-transition {
+  navigation: auto;
+}
+
+.site-header {
+  view-transition-name: mk-header;
+}
+
+::view-transition-group(root) {
+  animation-duration: var(--motion-slow);
+}
+
+::view-transition-old(root) {
+  animation: mk-page-out var(--motion-quick) var(--motion-ease-exit) both;
+}
+
+::view-transition-new(root) {
+  animation: mk-page-in var(--motion-slow) var(--motion-ease-enter) both;
+}
+
+::view-transition-old(mk-header),
+::view-transition-new(mk-header) {
+  animation-duration: var(--motion-standard);
+}
+
+@keyframes mk-page-out {
+  to {
+    translate: 0 -8px;
+  }
+}
+
+@keyframes mk-page-in {
+  from {
+    clip-path: polygon(0 0, 0 0, 3vw 100%, 0 100%);
+    translate: 0 10px;
+  }
+  to {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    translate: none;
+  }
+}
+
+/* Buttons behave like compact mechanical shutters: fast feedback, calm settle. */
+.button {
+  isolation: isolate;
+  overflow: hidden;
+  transition:
+    color var(--motion-quick) var(--motion-ease-shift),
+    border-color var(--motion-quick) var(--motion-ease-shift),
+    translate 120ms var(--motion-ease-shift),
+    scale 120ms var(--motion-ease-shift);
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  background: var(--coal);
+  transform: translate3d(-108%, 0, 0) skewX(-12deg);
+  transform-origin: right center;
+  transition: transform var(--motion-standard) var(--motion-ease-enter);
+}
+
+.button > span,
+.button > .arrow {
+  position: relative;
+  z-index: 1;
+}
+
+.button .arrow {
+  transition:
+    translate var(--motion-quick) var(--motion-ease-enter),
+    rotate var(--motion-standard) var(--motion-ease-enter);
+}
+
+.button--light::before,
+.chauffeur-teaser .button::before,
+.chauffeur-hero .button::before {
+  background: var(--signal);
+}
+
+.section-coal .button::before {
+  background: var(--bone);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button:hover,
+  .button:focus-visible {
+    background: var(--signal);
+    color: var(--bone);
+  }
+
+  .button--outline:hover,
+  .button--outline:focus-visible {
+    background: transparent;
+    color: var(--bone);
+  }
+
+  .button--light:hover,
+  .button--light:focus-visible,
+  .chauffeur-teaser .button:hover,
+  .chauffeur-teaser .button:focus-visible,
+  .chauffeur-hero .button:hover,
+  .chauffeur-hero .button:focus-visible,
+  .section-coal .button:hover,
+  .section-coal .button:focus-visible {
+    color: var(--coal);
+  }
+
+  .button:hover::before,
+  .button:focus-visible::before {
+    transform: translate3d(0, 0, 0) skewX(0deg);
+  }
+
+  .button:hover .arrow,
+  .button:focus-visible .arrow {
+    translate: 5px -3px;
+    rotate: -2deg;
+  }
+}
+
+.button:active {
+  translate: 0 1px;
+  scale: 0.985;
+}
+
+.text-link,
+.hero-secondary,
+.hero-equipment-link,
+.contact-links > a {
+  position: relative;
+}
+
+.text-link .arrow,
+.hero-secondary .arrow,
+.hero-equipment-link .arrow,
+.contact-links .arrow,
+.back-top .arrow {
+  transition:
+    translate var(--motion-standard) var(--motion-ease-enter),
+    rotate var(--motion-standard) var(--motion-ease-enter);
+}
+
+.text-link::after,
+.hero-equipment-link::after,
+.contact-links > a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform var(--motion-standard) var(--motion-ease-enter);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .text-link:hover::after,
+  .text-link:focus-visible::after,
+  .hero-equipment-link:hover::after,
+  .hero-equipment-link:focus-visible::after,
+  .contact-links > a:hover::after,
+  .contact-links > a:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left center;
+  }
+
+  .text-link:hover .arrow,
+  .text-link:focus-visible .arrow,
+  .hero-secondary:hover .arrow,
+  .hero-secondary:focus-visible .arrow,
+  .hero-equipment-link:hover .arrow,
+  .hero-equipment-link:focus-visible .arrow,
+  .contact-links > a:hover .arrow,
+  .contact-links > a:focus-visible .arrow {
+    translate: 5px -4px;
+    rotate: -3deg;
+  }
+
+  .back-top:hover .arrow,
+  .back-top:focus-visible .arrow {
+    translate: 4px 0;
+  }
+}
+
+.desktop-nav a::after {
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform var(--motion-standard) var(--motion-ease-enter);
+}
+
+.desktop-nav a:hover::after,
+.desktop-nav a:focus-visible::after,
+.desktop-nav a[aria-current]::after {
+  width: 100%;
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+.header-cta {
+  background-image: linear-gradient(102deg, var(--petrol) 0 49.5%, var(--coal) 50% 100%);
+  background-position: 100% 50%;
+  background-size: 210% 100%;
+  transition:
+    background-position var(--motion-standard) var(--motion-ease-enter),
+    translate 120ms var(--motion-ease-shift);
+}
+
+.header-cta .arrow {
+  transition: translate var(--motion-standard) var(--motion-ease-enter);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .header-cta:hover,
+  .header-cta:focus-visible {
+    background-color: var(--petrol);
+    background-position: 0 50%;
+  }
+
+  .header-cta:hover .arrow,
+  .header-cta:focus-visible .arrow {
+    translate: 4px -3px;
+  }
+
+  .wordmark:hover .brand-slash,
+  .wordmark:focus-visible .brand-slash {
+    translate: 1px -2px;
+    scale: 1.08;
+  }
+}
+
+.header-cta:active {
+  translate: 0 1px;
+}
+
+.brand-slash {
+  display: inline-block;
+  transition:
+    translate var(--motion-standard) var(--motion-ease-enter),
+    scale var(--motion-standard) var(--motion-ease-enter);
+}
+
+.menu-toggle span {
+  transform-origin: center;
+  transition:
+    translate var(--motion-quick) var(--motion-ease-enter),
+    scale var(--motion-quick) var(--motion-ease-enter);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .menu-toggle:hover span:first-child,
+  .menu-toggle:focus-visible span:first-child {
+    translate: 4px 0;
+  }
+
+  .menu-toggle:hover span:last-child,
+  .menu-toggle:focus-visible span:last-child {
+    translate: -4px 0;
+  }
+}
+
+/* Equipment rows use a plate sliding under the content instead of layout shifts. */
+.index-row {
+  isolation: isolate;
+  overflow: hidden;
+  padding-inline: 14px;
+  transition:
+    color var(--motion-quick) var(--motion-ease-shift),
+    translate var(--motion-standard) var(--motion-ease-enter);
+}
+
+.index-row::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: #e5e5db;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform var(--motion-standard) var(--motion-ease-enter);
+}
+
+.index-row > * {
+  position: relative;
+  z-index: 1;
+}
+
+.index-row.is-active {
+  padding-inline: 14px;
+  background: transparent;
+}
+
+.index-row .arrow {
+  transition:
+    translate var(--motion-standard) var(--motion-ease-enter),
+    rotate var(--motion-standard) var(--motion-ease-enter);
+}
+
+.index-row.is-active::before {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .index-row:hover,
+  .index-row:focus-visible {
+    translate: 6px 0;
+  }
+
+  .index-row:hover .arrow,
+  .index-row:focus-visible .arrow,
+  .index-row.is-active .arrow {
+    translate: 3px -3px;
+    rotate: -3deg;
+  }
+}
+
+[data-index-preview].is-switching:not([hidden]) {
+  animation: mk-preview-swap var(--motion-slow) var(--motion-ease-enter) both;
+}
+
+@keyframes mk-preview-swap {
+  from {
+    clip-path: polygon(0 0, 6% 0, 0 100%, 0 100%);
+    translate: 14px 0;
+  }
+  to {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    translate: none;
+  }
+}
+
+.equipment-visual .equipment-drawing,
+.equipment-visual .visual-index,
+.equipment-visual .visual-caption,
+.equipment-visual::after {
+  transition:
+    translate var(--motion-slow) var(--motion-ease-enter),
+    opacity var(--motion-standard) var(--motion-ease-shift);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .focus-image:hover .equipment-drawing,
+  .index-preview:hover .equipment-drawing,
+  .product-main > .equipment-visual:hover .equipment-drawing,
+  .chauffeur-teaser .equipment-visual:hover .equipment-drawing {
+    translate: 8px -5px;
+  }
+
+  .focus-image:hover .visual-index,
+  .index-preview:hover .visual-index,
+  .product-main > .equipment-visual:hover .visual-index,
+  .chauffeur-teaser .equipment-visual:hover .visual-index {
+    translate: -7px 5px;
+  }
+
+  .focus-image:hover .visual-caption,
+  .index-preview:hover .visual-caption,
+  .product-main > .equipment-visual:hover .visual-caption,
+  .chauffeur-teaser .equipment-visual:hover .visual-caption {
+    translate: 4px 0;
+  }
+}
+
+.focus-stamp {
+  transition:
+    translate var(--motion-standard) var(--motion-ease-enter),
+    background-color var(--motion-quick) var(--motion-ease-shift);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .focus-image:hover .focus-stamp {
+    translate: -4px -5px;
+  }
+}
+
+/* Native details gain a progressive, interruptible open/close transition. */
+.faq details {
+  interpolate-size: allow-keywords;
+}
+
+.faq details::details-content {
+  block-size: 0;
+  overflow: clip;
+  transition:
+    content-visibility var(--motion-standard) allow-discrete,
+    block-size var(--motion-standard) var(--motion-ease-shift);
+}
+
+.faq details[open]::details-content {
+  block-size: auto;
+}
+
+.faq summary {
+  transition:
+    color var(--motion-quick) var(--motion-ease-shift),
+    translate var(--motion-standard) var(--motion-ease-enter);
+}
+
+.faq-plus {
+  transition:
+    rotate var(--motion-standard) var(--motion-ease-enter),
+    scale var(--motion-quick) var(--motion-ease-shift);
+}
+
+.faq details[open] .faq-plus {
+  transform: none;
+  rotate: 45deg;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .faq summary:hover,
+  .faq summary:focus-visible {
+    color: var(--signal);
+    translate: 5px 0;
+  }
+
+  .faq summary:hover .faq-plus,
+  .faq summary:focus-visible .faq-plus {
+    scale: 1.08;
+  }
+}
+
+/* Form feedback keeps state changes spatially connected without delaying input. */
+.field input:not([type="checkbox"]),
+.field select,
+.field textarea {
+  transition:
+    border-color var(--motion-quick) var(--motion-ease-shift),
+    background-color var(--motion-quick) var(--motion-ease-shift),
+    box-shadow var(--motion-quick) var(--motion-ease-shift);
+}
+
+.field input:not([type="checkbox"]):focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--coal);
+  background: #fffdf7;
+  box-shadow: inset 4px 0 0 var(--signal);
+}
+
+.request-form.is-enhanced fieldset:not([hidden]) {
+  animation: mk-form-step-in var(--motion-slow) var(--motion-ease-enter) both;
+}
+
+.form-error-summary:not([hidden]),
+.field-error:not([hidden]),
+.request-recap:not([hidden]) {
+  animation: mk-feedback-in var(--motion-standard) var(--motion-ease-enter) both;
+}
+
+.form-progress [aria-current]::after {
+  transform-origin: left center;
+  animation: mk-progress-in var(--motion-standard) var(--motion-ease-enter) both;
+}
+
+.form-progress li {
+  transition: color var(--motion-quick) var(--motion-ease-shift);
+}
+
+@keyframes mk-form-step-in {
+  from {
+    translate: 0 16px;
+    clip-path: inset(0 0 18% 0);
+  }
+  to {
+    translate: none;
+    clip-path: inset(0);
+  }
+}
+
+@keyframes mk-feedback-in {
+  from {
+    translate: 0 -8px;
+    clip-path: inset(0 0 35% 0);
+  }
+  to {
+    translate: none;
+    clip-path: inset(0);
+  }
+}
+
+@keyframes mk-progress-in {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* The mobile sheet deploys from the same 12-degree geometry as the brand. */
+@media (prefers-reduced-motion: no-preference) {
+  .mobile-menu {
+    translate: 3vw 0;
+    clip-path: polygon(100% 0, 100% 0, 100% 100%, 88% 100%);
+    transition:
+      translate var(--motion-slow) var(--motion-ease-enter),
+      clip-path var(--motion-slow) var(--motion-ease-enter),
+      overlay var(--motion-slow) allow-discrete,
+      display var(--motion-slow) allow-discrete;
+  }
+
+  .mobile-menu[open] {
+    translate: none;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  @starting-style {
+    .mobile-menu[open] {
+      translate: 3vw 0;
+      clip-path: polygon(100% 0, 100% 0, 100% 100%, 88% 100%);
+    }
+  }
+
+  .mobile-menu::backdrop {
+    opacity: 0;
+    transition:
+      opacity var(--motion-standard) var(--motion-ease-shift),
+      overlay var(--motion-slow) allow-discrete,
+      display var(--motion-slow) allow-discrete;
+  }
+
+  .mobile-menu[open]::backdrop {
+    opacity: 1;
+  }
+
+  @starting-style {
+    .mobile-menu[open]::backdrop {
+      opacity: 0;
+    }
+  }
+
+  .mobile-menu[open] nav a {
+    animation: mk-menu-item-in var(--motion-slow) var(--motion-ease-enter) both;
+  }
+
+  .mobile-menu[open] nav a:nth-child(2) {
+    animation-delay: 35ms;
+  }
+
+  .mobile-menu[open] nav a:nth-child(3) {
+    animation-delay: 70ms;
+  }
+
+  .mobile-menu[open] nav a:nth-child(4) {
+    animation-delay: 105ms;
+  }
+
+  .mobile-menu[open] nav a:nth-child(5) {
+    animation-delay: 140ms;
+  }
+}
+
+@keyframes mk-menu-item-in {
+  from {
+    translate: 18px 0;
+    clip-path: inset(0 0 0 28%);
+  }
+  to {
+    translate: none;
+    clip-path: inset(0);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .mobile-menu nav a {
+    transition:
+      color var(--motion-quick) var(--motion-ease-shift),
+      translate var(--motion-standard) var(--motion-ease-enter);
+  }
+
+  .mobile-menu nav a:hover,
+  .mobile-menu nav a:focus-visible {
+    color: var(--signal);
+    translate: 8px 0;
+  }
+}
+
+/* Page-load choreography: one hero event, followed by quiet supporting motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-topline,
+  .page-heading > .eyebrow,
+  .product-heading .breadcrumbs,
+  .chauffeur-hero > .container > .eyebrow {
+    animation: mk-rise-in var(--motion-slow) var(--motion-ease-enter) 40ms both;
+  }
+
+  .hero h1,
+  .page-heading h1,
+  .product-heading h1,
+  .chauffeur-hero h1 {
+    animation: mk-title-deploy var(--motion-reveal) var(--motion-ease-enter) 90ms both;
+  }
+
+  .page-heading .lead,
+  .product-title-row,
+  .chauffeur-hero-bottom {
+    animation: mk-rise-in var(--motion-slow) var(--motion-ease-enter) 260ms both;
+  }
+
+  .hero .hero-visual,
+  .chauffeur-hero .equipment-visual {
+    animation: mk-frame-deploy 820ms var(--motion-ease-enter) 160ms both;
+  }
+
+  .hero .equipment-drawing,
+  .chauffeur-hero .equipment-drawing {
+    animation: mk-machine-settle 880ms var(--motion-ease-enter) 250ms both;
+  }
+
+  .hero .visual-index,
+  .chauffeur-hero .visual-index {
+    animation: mk-index-settle var(--motion-reveal) var(--motion-ease-enter) 310ms both;
+  }
+
+  .hero-bottom {
+    animation: mk-rise-in var(--motion-slow) var(--motion-ease-enter) 420ms both;
+  }
+
+  .hero-strip > span {
+    animation: mk-strip-in var(--motion-slow) var(--motion-ease-enter) 520ms both;
+  }
+
+  .hero-strip > span:nth-child(2) {
+    animation-delay: 550ms;
+  }
+
+  .hero-strip > span:nth-child(3) {
+    animation-delay: 580ms;
+  }
+
+  .hero-strip > span:nth-child(4) {
+    animation-delay: 610ms;
+  }
+
+  .hero-strip > span:nth-child(5) {
+    animation-delay: 640ms;
+  }
+
+  .hero-strip > span:nth-child(6) {
+    animation-delay: 670ms;
+  }
+
+  .product-main > * {
+    animation: mk-rise-in var(--motion-reveal) var(--motion-ease-enter) 220ms both;
+  }
+
+  .product-main > :nth-child(2) {
+    animation-delay: 300ms;
+  }
+}
+
+@keyframes mk-title-deploy {
+  from {
+    clip-path: polygon(0 0, 4% 0, 0 100%, 0 100%);
+    translate: -14px 0;
+  }
+  to {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    translate: none;
+  }
+}
+
+@keyframes mk-frame-deploy {
+  from {
+    clip-path: polygon(100% 0, 100% 0, 88% 100%, 88% 100%);
+  }
+  to {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+@keyframes mk-machine-settle {
+  from {
+    opacity: 0.25;
+    translate: 28px 7px;
+  }
+  to {
+    opacity: 1;
+    translate: none;
+  }
+}
+
+@keyframes mk-index-settle {
+  from {
+    opacity: 0;
+    translate: -22px 8px;
+  }
+  to {
+    opacity: 1;
+    translate: none;
+  }
+}
+
+@keyframes mk-rise-in {
+  from {
+    translate: 0 18px;
+    clip-path: inset(0 0 48% 0);
+  }
+  to {
+    translate: none;
+    clip-path: inset(0);
+  }
+}
+
+@keyframes mk-strip-in {
+  from {
+    translate: 0 12px;
+    clip-path: inset(0 0 55% 0);
+  }
+  to {
+    translate: none;
+    clip-path: inset(0);
+  }
+}
+
+/* Viewport reveals are opt-in and only hidden after the observer is ready. */
+@media (prefers-reduced-motion: no-preference) {
+  html.motion-ready [data-reveal] {
+    --reveal-x: 0;
+    --reveal-y: 24px;
+    translate: var(--reveal-x) var(--reveal-y);
+    clip-path: inset(0 0 96% 0);
+    transition:
+      translate var(--motion-reveal) var(--motion-ease-enter),
+      clip-path var(--motion-reveal) var(--motion-ease-enter);
+    will-change: translate, clip-path;
+  }
+
+  html.motion-ready [data-reveal="left"] {
+    --reveal-x: -30px;
+    --reveal-y: 0;
+    clip-path: polygon(0 0, 4% 0, 0 100%, 0 100%);
+  }
+
+  html.motion-ready [data-reveal="right"] {
+    --reveal-x: 30px;
+    --reveal-y: 0;
+    clip-path: polygon(96% 0, 100% 0, 100% 100%, 100% 100%);
+  }
+
+  html.motion-ready [data-reveal="wipe"] {
+    --reveal-y: 14px;
+    clip-path: polygon(0 0, 4% 0, 0 100%, 0 100%);
+  }
+
+  html.motion-ready [data-reveal].is-revealed {
+    translate: none;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    will-change: auto;
+  }
+
+  /* A nested block inherits the choreography of its revealed parent. */
+  html.motion-ready [data-reveal] [data-reveal] {
+    translate: none;
+    clip-path: none;
+    transition: none;
+    will-change: auto;
+  }
+
+  html.motion-ready [data-reveal][data-reveal-delay="1"] {
+    transition-delay: 70ms;
+  }
+
+  html.motion-ready [data-reveal][data-reveal-delay="2"] {
+    transition-delay: 140ms;
+  }
+
+  .route-diagram i,
+  .territory-route i {
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform var(--motion-reveal) var(--motion-ease-enter) 180ms;
+  }
+
+  [data-reveal].is-revealed .route-diagram i,
+  [data-reveal].is-revealed .territory-route i {
+    transform: scaleX(1);
+  }
+
+  .process-row {
+    position: relative;
+  }
+
+  .process-row::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    right: 0;
+    left: 0;
+    height: 2px;
+    background: var(--signal);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform var(--motion-reveal) var(--motion-ease-enter) 120ms;
+  }
+
+  .process-row.is-revealed::before {
+    transform: scaleX(1);
+  }
+}
+
+/* Scroll-linked depth is decorative, desktop-only and progressively enhanced. */
+@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .index-preview .equipment-visual::before,
+    .focus-image .equipment-visual::before,
+    .product-main > .equipment-visual::before,
+    .chauffeur-teaser .equipment-visual::before,
+    .chauffeur-hero .equipment-visual::before {
+      animation: mk-depth-plane linear both;
+      animation-timeline: view(block);
+      animation-range: entry -10% exit 110%;
+      transform-origin: center;
+    }
+  }
+}
+
+@keyframes mk-depth-plane {
+  from {
+    transform: translate3d(0, -7%, 0) scale(1.08);
+  }
+  to {
+    transform: translate3d(0, 7%, 0) scale(1.08);
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --motion-standard: 260ms;
+    --motion-slow: 440ms;
+    --motion-reveal: 560ms;
+  }
+
+  .index-row {
+    padding-inline: 8px;
+  }
+
+  .index-row.is-active {
+    padding-inline: 8px;
+  }
+
+  html.motion-ready [data-reveal] {
+    --reveal-y: 16px;
+  }
+
+  html.motion-ready [data-reveal="left"],
+  html.motion-ready [data-reveal="right"] {
+    --reveal-x: 0;
+    --reveal-y: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(root),
+  ::view-transition-old(root),
+  ::view-transition-new(root),
+  ::view-transition-old(mk-header),
+  ::view-transition-new(mk-header) {
+    animation: none !important;
+  }
+
+  [data-reveal] {
+    translate: none !important;
+    clip-path: none !important;
+  }
+}

@@ -5,7 +5,7 @@ interface Props { subject?: string; compact?: boolean }
 const { subject, compact = false } = Astro.props;
 const whatsapp = whatsappLink(subject);
 ---
-<div class:list={['contact-block', { 'contact-block--compact': compact }]}>
+<div class:list={['contact-block', { 'contact-block--compact': compact }]} data-reveal="wipe">
   <p class="eyebrow">Un échange direct</p>
   <h2>Parlons de<br />votre besoin.</h2>
   <p>Un matériel, une durée, un lieu. Nous précisons ensemble les modalités de votre location.</p>
