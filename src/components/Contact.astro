@@ -1,0 +1,18 @@
+---
+import Arrow from './Arrow.astro';
+import { site, whatsappLink } from '../config/site';
+interface Props { subject?: string; compact?: boolean }
+const { subject, compact = false } = Astro.props;
+const whatsapp = whatsappLink(subject);
+---
+<div class:list={['contact-block', { 'contact-block--compact': compact }]}>
+  <p class="eyebrow">Un échange direct</p>
+  <h2>Parlons de<br />votre besoin.</h2>
+  <p>Un matériel, une durée, un lieu. Nous précisons ensemble les modalités de votre location.</p>
+  <div class="contact-links">
+    {site.phoneHref && <a href={site.phoneHref}><span>Appeler MK <strong>{site.phone}</strong></span><Arrow diagonal /></a>}
+    {site.email && <a href={`mailto:${site.email}`}><span>Écrire à MK <strong>{site.email}</strong></span><Arrow diagonal /></a>}
+    {whatsapp && <a href={whatsapp} target="_blank" rel="noopener noreferrer"><span>Échanger sur WhatsApp <small>Ouvre WhatsApp</small></span><Arrow diagonal /></a>}
+    {!site.phoneHref && !site.email && !whatsapp && <p class="contact-unavailable">Les coordonnées de MK seront ajoutées avant l’ouverture du site.</p>}
+  </div>
+</div>

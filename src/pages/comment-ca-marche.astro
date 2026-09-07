@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+import FAQ from '../components/FAQ.astro';
+const steps = [
+  { title: 'Choisissez votre matériel.', text: 'Consultez les équipements et leurs informations. Vous ne savez pas encore lequel choisir ? Décrivez simplement votre besoin dans la demande.' },
+  { title: 'Indiquez vos dates et votre lieu.', text: 'Une journée, plusieurs jours ou une location plus longue : précisez votre souhait et la commune de mise à disposition. Les dates peuvent rester à définir.' },
+  { title: 'Précisons les modalités.', text: 'MK vérifie avec vous la disponibilité, la durée, la livraison et les conditions de location. Pour la mini-pelle, vous pouvez demander une formule avec ou sans chauffeur.' },
+  { title: 'Organisons la mise à disposition.', text: 'Après accord avec MK, le matériel est mis à disposition selon les modalités convenues. La livraison est le fonctionnement principal du service.' },
+];
+const questions = [
+  { question: 'Ma demande réserve-t-elle le matériel ?', answer: 'Non. L’envoi d’une demande permet à MK d’étudier votre besoin. La disponibilité et les modalités doivent être confirmées directement avec vous.' },
+  { question: 'Puis-je louer pour plusieurs jours ?', answer: 'Oui, MK propose la courte et la longue durée. Indiquez la durée envisagée ; la tarification correspondante est à convenir avec MK.' },
+  { question: 'La mini-pelle est-elle disponible avec chauffeur ?', answer: 'La mini-pelle peut être demandée avec ou sans chauffeur. Les modalités et le tarif de la prestation avec chauffeur sont à préciser avec MK.' },
+  { question: 'Comment connaître la caution ?', answer: 'Les cautions documentées figurent sur les fiches matériel. Celle de la mini-pelle concerne la formule sans chauffeur. Une caution non renseignée doit être précisée avec MK.' },
+  { question: 'Quels documents dois-je prévoir ?', answer: 'Les documents nécessaires et les conditions d’utilisation seront précisés par MK avant de convenir de la location.' },
+];
+---
+<Layout title="Comment louer du matériel chez MK" description="Choisissez votre matériel, indiquez vos dates et organisez la mise à disposition avec MK Location, à Annay et alentours.">
+  <section class="container page-heading"><p class="eyebrow"><span class="signal-square"></span> MK / Comment ça marche</p><h1>DU BESOIN<br /><span class="text-outline">AU TERRAIN.</span></h1><p class="lead">Vous préparez votre projet.<br />Nous organisons la location avec vous.</p></section>
+  <section class="container process-section" aria-label="Les étapes de location">{steps.map((step, i) => <article class="process-row"><span class="process-number">0{i + 1}</span><h2>{step.title}</h2><p>{step.text}</p></article>)}</section>
+  <section class="container section-pad faq-section"><div><p class="eyebrow"><span class="signal-square"></span> Avant de louer</p><h2>LES QUESTIONS<br /><span class="text-outline">PRATIQUES.</span></h2></div><FAQ items={questions} /></section>
+  <section class="section-coal"><div class="container closing-cta"><p class="eyebrow">La première étape</p><h2>DITES-NOUS<br />CE QU’IL VOUS FAUT.</h2><Button href="/demande-location">Demander une location</Button></div></section>
+</Layout>

@@ -1,0 +1,23 @@
+---
+import { equipment, money } from '../data/catalog';
+import { site, publication } from '../config/site';
+import EquipmentVisual from './EquipmentVisual.astro';
+import Arrow from './Arrow.astro';
+interface Props { full?: boolean }
+const { full = false } = Astro.props;
+---
+<div class:list={['equipment-index', { 'equipment-index--full': full }]} data-equipment-index>
+  <div class="index-list">{equipment.map((item, i) => <a class:list={['index-row', { 'is-active': i === 0 }]} href={`/location/${item.slug}`} data-index-item={item.slug}><span class="index-number mono">{item.index}</span><span class="index-name"><small>{item.category}</small><strong>{item.shortName}</strong>{full && <span class="index-need">{item.need}</span>}</span><span class="index-rate">{money(item.dailyRate)}<small>€ / jour{publication.prices.taxLabel && ` ${publication.prices.taxLabel}`}</small></span><Arrow diagonal /></a>)}<p class="index-footnote">{site.preview ? 'Tarifs de référence du dossier · modalités et base HT/TTC à confirmer.' : 'Disponibilité et modalités confirmées directement avec MK.'}</p></div>
+  <div class="index-preview" aria-hidden="true">{equipment.map((item, i) => <div data-index-preview={item.slug} hidden={i !== 0}><EquipmentVisual kind={item.visual} slug={item.slug} index={item.index} /><div class="index-preview-label"><span class="mono">MK / {item.index}</span><span>{item.need}</span><Arrow /></div></div>)}</div>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-equipment-index]').forEach((index) => {
+    index.querySelectorAll<HTMLElement>('[data-index-item]').forEach((item) => {
+      const activate = () => {
+        index.querySelectorAll<HTMLElement>('[data-index-item]').forEach((row) => row.classList.toggle('is-active', row === item));
+        index.querySelectorAll<HTMLElement>('[data-index-preview]').forEach((preview) => { preview.hidden = preview.dataset.indexPreview !== item.dataset.indexItem; });
+      };
+      item.addEventListener('mouseenter', activate); item.addEventListener('focus', activate);
+    });
+  });
+</script>

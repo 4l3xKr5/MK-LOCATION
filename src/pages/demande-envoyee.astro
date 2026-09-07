@@ -1,0 +1,11 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+import Contact from '../components/Contact.astro';
+---
+<Layout title="La suite de votre demande" description="Après votre demande, MK Location précise avec vous la disponibilité et les modalités de location." noindex>
+  <section class="container confirmation"><p class="eyebrow"><span class="signal-square"></span> MK / La prochaine étape</p><h1 data-success-title>ON FAIT<br /><span class="text-outline">LE POINT.</span></h1><p class="lead" data-success-copy>Après l’envoi de votre demande, MK vous recontacte pour préciser les disponibilités et les modalités.</p><p>Une demande ne constitue pas une réservation. La location est organisée après confirmation directe avec MK.</p><Button href="/location">Revenir au matériel</Button><Contact compact /></section>
+</Layout>
+<script>
+  try { if (sessionStorage.getItem('mk-request-sent')) { document.querySelector('[data-success-title]')!.textContent = 'DEMANDE TRANSMISE.'; document.querySelector('[data-success-copy]')!.textContent = 'Votre demande a été transmise. MK doit encore confirmer la disponibilité et les modalités avec vous.'; sessionStorage.removeItem('mk-request-sent'); } } catch { /* Generic next-step copy remains accurate without storage. */ }
+</script>

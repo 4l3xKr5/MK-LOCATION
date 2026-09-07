@@ -1,0 +1,20 @@
+---
+import { equipment, getEquipment } from '../data/catalog';
+import { site, whatsappLink } from '../config/site';
+import Arrow from './Arrow.astro';
+const pathname = Astro.url.pathname.replace(/\/$/, '');
+const selected = getEquipment(pathname.startsWith('/location/') ? pathname.split('/').pop() : null);
+const onRequest = pathname === '/demande-location' || pathname === '/demande-envoyee';
+const mobileHref = pathname === '/chauffeur' ? '/chauffeur#demande' : selected ? `/demande-location?materiel=${selected.slug}` : '/demande-location';
+const mobileLabel = pathname === '/chauffeur' ? 'Demander une prestation' : 'Demander une location';
+---
+<footer class="site-footer">
+  <div class="container footer-top"><div><a class="footer-brand" href="/">MK<span aria-hidden="true">/</span> <span>LOCATION</span></a><p>Du besoin au terrain.<br />Annay & alentours.</p></div><p class="eyebrow footer-purpose">Matériel de chantier<br />Véhicules & utilitaires<br />Porsche avec chauffeur</p></div>
+  <div class="container footer-grid">
+    <div><h2>Le matériel</h2>{equipment.map((item) => <a href={`/location/${item.slug}`}>{item.name}</a>)}</div>
+    <div><h2>Organiser une location</h2><a href="/comment-ca-marche">Comment ça marche</a><a href="/livraison-annay">Livraison & zone</a><a href="/chauffeur">Avec chauffeur</a><a href="/demande-location">Faire une demande</a></div>
+    <div><h2>Contact direct</h2>{site.phoneHref && <a href={site.phoneHref}>{site.phone}</a>}{site.email && <a href={`mailto:${site.email}`}>{site.email}</a>}{site.whatsapp && <a href={whatsappLink()} target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>}{!site.phoneHref && !site.email && !site.whatsapp && <p>Coordonnées à venir.<br /><a href="/informations-preversion">À propos de cette préversion</a></p>}</div>
+  </div>
+  <div class="container footer-bottom"><span>© {new Date().getFullYear()} MK Location</span><nav aria-label="Informations légales"><a href="/conditions-location">Conditions de location</a><a href="/mentions-legales">Mentions légales</a><a href="/confidentialite">Confidentialité</a></nav><a href="#top" class="back-top" aria-label="Retour en haut de page"><Arrow /></a></div>
+</footer>
+{(!onRequest || site.phoneHref || site.whatsapp) && <nav class="mobile-actions" aria-label="Contact rapide">{site.phoneHref && <a class="mobile-call" href={site.phoneHref}>Appeler</a>}{!onRequest ? <a href={mobileHref}>{mobileLabel} <Arrow diagonal /></a> : site.whatsapp && <a href={whatsappLink()} target="_blank" rel="noopener noreferrer">Échanger sur WhatsApp <Arrow diagonal /></a>}</nav>}

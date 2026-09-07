@@ -1,0 +1,51 @@
+---
+import { equipment } from '../data/catalog';
+import { site } from '../config/site';
+import Arrow from './Arrow.astro';
+interface Props { kind?: 'location' | 'chauffeur' }
+const { kind = 'location' } = Astro.props;
+const id = (name: string) => `${kind}-${name}`;
+---
+<form class="request-form" name={kind} method="POST" action="/demande-envoyee" data-request-form={kind} data-enabled={String(site.formsEnabled)} data-netlify={site.formsEnabled ? 'true' : undefined} netlify-honeypot={site.formsEnabled ? 'bot-field' : undefined}>
+  <input type="hidden" name="form-name" value={kind} />
+  <div class="honeypot" aria-hidden="true"><label>Ne pas remplir <input name="bot-field" tabindex="-1" autocomplete="off" /></label></div>
+  {kind === 'location' && <ol class="form-progress" aria-label="Étapes de votre demande"><li data-progress="0" aria-current="step"><span>01</span> Le besoin</li><li data-progress="1"><span>02</span> Dates & lieu</li><li data-progress="2"><span>03</span> Vos coordonnées</li></ol>}
+  <div class="form-error-summary" tabindex="-1" role="alert" hidden data-error-summary><h2>Quelques précisions sont nécessaires</h2><ul></ul></div>
+  {kind === 'location' && <fieldset data-step="0">
+    <legend>De quoi avez-vous besoin ?</legend><p class="field-intro">Choisissez votre matériel. Nous organiserons la suite ensemble.</p>
+    <div class="field"><label for={id('materiel')}>Le matériel <span aria-hidden="true">*</span></label><select id={id('materiel')} name="materiel" required><option value="">Choisir un équipement</option>{equipment.map((item) => <option value={item.slug}>{item.name}</option>)}<option value="autre">Autre demande</option></select><p class="field-error" data-error-for="materiel" id={id('materiel-error')} hidden></p></div>
+    <div class="field" data-driver-field><label for={id('operateur')}>Mini-pelle : avec ou sans chauffeur ?</label><select id={id('operateur')} name="operateur"><option value="">Choisir une formule</option><option value="sans">Sans chauffeur</option><option value="avec">Avec chauffeur</option></select><p class="field-hint">À renseigner uniquement pour la mini-pelle. Le tarif de la prestation chauffeur est à préciser avec MK.</p><p class="field-error" data-error-for="operateur" id={id('operateur-error')} hidden></p></div>
+    <div class="form-note"><span class="note-mark" aria-hidden="true">↗</span><p>Vous cherchez une Porsche avec chauffeur ?<br /><a href="/chauffeur#demande">Accéder à la demande chauffeur</a></p></div>
+  </fieldset>}
+  <fieldset data-step={kind === 'location' ? '1' : '0'}>
+    <legend>{kind === 'location' ? 'Quand et à quel endroit ?' : 'Votre trajet commence ici.'}</legend>
+    <p class="field-intro">{kind === 'location' ? 'Une première idée suffit. Les modalités seront confirmées avec MK.' : 'Indiquez vos souhaits pour préparer la prestation avec MK.'}</p>
+    <div class="field-grid">
+      <div class="field"><label for={id('date')}>Date souhaitée <span aria-hidden="true">*</span></label><input type="date" name="date" id={id('date')} /><label class="checkbox"><input type="checkbox" name="date-flexible" value="oui" /> Date à définir</label><p class="field-error" data-error-for="date" id={id('date-error')} hidden></p></div>
+      {kind === 'location' ? <div class="field"><label for={id('duree')}>Durée envisagée <span aria-hidden="true">*</span></label><select name="duree" id={id('duree')} required><option value="">Choisir une durée</option><option value="1-jour">1 jour</option><option value="plusieurs-jours">Plusieurs jours</option><option value="longue-duree">Longue durée</option><option value="a-definir">À définir</option></select><p class="field-error" data-error-for="duree" id={id('duree-error')} hidden></p></div> : <div class="field"><label for={id('horaire')}>Horaire souhaité <small>facultatif</small></label><input type="time" name="horaire" id={id('horaire')} /><p class="field-error" data-error-for="horaire" id={id('horaire-error')} hidden></p></div>}
+    </div>
+    {kind === 'location' ? <>
+      <div class="field"><label for={id('commune')}>Commune de mise à disposition <span aria-hidden="true">*</span></label><input name="commune" id={id('commune')} autocomplete="address-level2" maxlength="150" required placeholder="Votre commune" /><p class="field-error" data-error-for="commune" id={id('commune-error')} hidden></p></div>
+      <div class="field"><label for={id('livraison')}>Une précision pour la livraison ? <small>facultatif</small></label><textarea name="livraison" id={id('livraison')} rows="3" maxlength="1000" placeholder="Lieu, accès, besoin particulier…"></textarea><p class="field-error" data-error-for="livraison" id={id('livraison-error')} hidden></p></div>
+    </> : <>
+      <div class="field"><label for={id('depart')}>Lieu de départ <span aria-hidden="true">*</span></label><input name="depart" id={id('depart')} maxlength="200" required placeholder="Commune ou lieu de rendez-vous" /><p class="field-error" data-error-for="depart" id={id('depart-error')} hidden></p></div>
+      <div class="field"><label for={id('destination')}>Destination <span aria-hidden="true">*</span></label><input name="destination" id={id('destination')} maxlength="200" placeholder="Votre destination" /><label class="checkbox"><input name="trajet-flexible" type="checkbox" value="oui" /> Besoin à préciser avec MK</label><p class="field-error" data-error-for="destination" id={id('destination-error')} hidden></p></div>
+    </>}
+  </fieldset>
+  <fieldset data-step={kind === 'location' ? '2' : '1'}>
+    <legend>Comment vous joindre ?</legend><p class="field-intro">MK pourra vous recontacter pour préciser la disponibilité et les modalités.</p>
+    <div class="field-grid"><div class="field"><label for={id('nom')}>Votre nom <span aria-hidden="true">*</span></label><input name="nom" id={id('nom')} autocomplete="name" required minlength="2" maxlength="100" /><p class="field-error" data-error-for="nom" id={id('nom-error')} hidden></p></div><div class="field"><label for={id('telephone')}>Téléphone <span aria-hidden="true">*</span></label><input name="telephone" id={id('telephone')} type="tel" autocomplete="tel" inputmode="tel" required maxlength="30" /><p class="field-error" data-error-for="telephone" id={id('telephone-error')} hidden></p></div></div>
+    <div class="field"><label for={id('email')}>E-mail <small>facultatif</small></label><input name="email" id={id('email')} type="email" autocomplete="email" maxlength="254" /><p class="field-error" data-error-for="email" id={id('email-error')} hidden></p></div>
+    {kind === 'location' && <div class="field"><label for={id('societe')}>Société <small>facultatif</small></label><input name="societe" id={id('societe')} autocomplete="organization" maxlength="150" /><p class="field-error" data-error-for="societe" id={id('societe-error')} hidden></p></div>}
+    <div class="field"><label for={id('message')}>Votre besoin en quelques mots <small>facultatif</small></label><textarea name="message" id={id('message')} rows="4" maxlength="2000" placeholder="Dites-nous ce qui nous aidera à préparer votre demande."></textarea><p class="field-error" data-error-for="message" id={id('message-error')} hidden></p></div>
+    <div class="request-recap" data-recap hidden><div class="recap-heading"><h2>Votre demande</h2>{kind === 'location' && <button type="button" data-edit-step="0">Modifier</button>}</div><dl></dl></div>
+    <p class="privacy-note">Les champs marqués * sont nécessaires pour traiter votre demande. Vos coordonnées servent à vous recontacter au sujet de cette demande. <a href="/confidentialite">Confidentialité</a>.</p>
+  </fieldset>
+  <div class="form-actions"><button type="button" class="form-back" data-back hidden>← Retour</button><button type="button" class="button" data-next hidden><span>Continuer</span><Arrow /></button><button type="submit" class="button" data-submit disabled={!site.formsEnabled}><span>{kind === 'location' ? 'Envoyer ma demande' : 'Demander une prestation'}</span><Arrow diagonal /></button></div>
+  {!site.formsEnabled && <p class="form-preview-note">Préversion : vous pouvez préparer votre demande. L’envoi sera disponible à l’ouverture du site.</p>}
+  <p class="form-status" role="status" aria-live="polite" data-form-status></p>
+  <noscript><p class="form-note">Tous les champs sont affichés. Indiquez une date ou cochez « Date à définir ». L’option chauffeur du formulaire matériel concerne uniquement la mini-pelle.</p></noscript>
+</form>
+<script>
+  import '../scripts/forms';
+</script>

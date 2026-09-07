@@ -1,0 +1,38 @@
+---
+import Arrow from './Arrow.astro';
+import { site } from '../config/site';
+const links = [ ['/location', 'Matériel'], ['/comment-ca-marche', 'Comment ça marche'], ['/livraison-annay', 'Livraison'], ['/chauffeur', 'Chauffeur'] ];
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+const active = (href: string) => pathname === href || (href === '/location' && pathname.startsWith('/location/'));
+---
+{site.preview && <aside class="preview-banner" aria-label="État de la préversion"><span class="preview-dot"></span> Préversion · visuels et informations à compléter <a href="/informations-preversion">En savoir plus <span aria-hidden="true">↗</span></a></aside>}
+<header class="site-header">
+  <a class="wordmark" href="/" aria-label="MK Location — Accueil"><span class="wordmark-mk">MK<span class="brand-slash" aria-hidden="true">/</span></span><span class="wordmark-location">LOCATION</span></a>
+  <nav class="desktop-nav" aria-label="Navigation principale">{links.map(([href, label]) => <a href={href} aria-current={active(href) ? 'page' : undefined}>{label}</a>)}</nav>
+  <a href="/demande-location" class="header-cta">Demander une location <Arrow diagonal /></a>
+  <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu" data-menu-open hidden><span></span><span></span></button>
+</header>
+<noscript><nav class="nojs-nav" aria-label="Navigation sans JavaScript">{links.map(([href, label]) => <a href={href}>{label}</a>)}<a href="/demande-location">Demander une location</a></nav></noscript>
+<dialog id="mobile-menu" class="mobile-menu" aria-labelledby="mobile-menu-title">
+  <div class="menu-top"><span id="mobile-menu-title" class="eyebrow">MK / Navigation</span><button class="menu-close" data-menu-close aria-label="Fermer le menu">Fermer <span aria-hidden="true">×</span></button></div>
+  <nav aria-label="Navigation mobile">{links.map(([href, label], i) => <a href={href} aria-current={active(href) ? 'page' : undefined}><span class="mono">0{i + 1}</span>{label}<Arrow diagonal /></a>)}<a href="/demande-location"><span class="mono">05</span>Demander une location<Arrow diagonal /></a></nav>
+  <p class="menu-bottom eyebrow">Annay & alentours<br />Du besoin au terrain.</p>
+</dialog>
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('#mobile-menu');
+  const trigger = document.querySelector<HTMLButtonElement>('[data-menu-open]');
+  if (trigger) trigger.hidden = false;
+  const close = () => dialog?.close();
+  trigger?.addEventListener('click', () => { dialog?.showModal(); trigger.setAttribute('aria-expanded', 'true'); document.documentElement.classList.add('menu-is-open'); });
+  document.querySelector('[data-menu-close]')?.addEventListener('click', close);
+  dialog?.addEventListener('close', () => { trigger?.setAttribute('aria-expanded', 'false'); document.documentElement.classList.remove('menu-is-open'); trigger?.focus(); });
+  dialog?.addEventListener('click', (event) => { if (event.target === dialog) close(); });
+  dialog?.addEventListener('keydown', (event) => {
+    if (event.key !== 'Tab') return;
+    const items = Array.from(dialog.querySelectorAll<HTMLElement>('a[href], button:not([disabled])')).filter((element) => element.getClientRects().length);
+    const first = items[0]; const last = items[items.length - 1];
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+  });
+  window.matchMedia('(min-width: 1100px)').addEventListener('change', (event) => { if (event.matches && dialog?.open) close(); });
+</script>

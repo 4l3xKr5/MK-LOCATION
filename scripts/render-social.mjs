@@ -1,0 +1,7 @@
+import { chromium } from '@playwright/test';
+const browser = await chromium.launch();
+try {
+  const page = await browser.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 1 });
+  await page.goto('http://127.0.0.1:4321/social-card.svg');
+  await page.screenshot({ path: 'public/social-card.png' });
+} finally { await browser.close(); }
