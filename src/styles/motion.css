@@ -211,6 +211,58 @@
   transform-origin: left center;
 }
 
+.nav-dropdown > summary::before {
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform var(--motion-standard) var(--motion-ease-enter);
+}
+
+.nav-dropdown.is-active > summary::before,
+.nav-dropdown[open] > summary::before,
+.nav-dropdown > summary:focus-visible::before {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+.nav-dropdown-caret {
+  transition: transform var(--motion-quick) var(--motion-ease-enter);
+}
+
+.nav-dropdown[open] .nav-dropdown-caret {
+  transform: rotate(225deg) translate(-2px, -2px);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .nav-dropdown[open] .nav-dropdown-menu {
+    animation: mk-nav-dropdown-deploy var(--motion-standard) var(--motion-ease-enter) both;
+  }
+}
+
+@keyframes mk-nav-dropdown-deploy {
+  from {
+    translate: 0 -8px;
+    clip-path: polygon(0 0, 5% 0, 0 100%, 0 100%);
+  }
+  to {
+    translate: none;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nav-dropdown-menu a:hover,
+  .nav-dropdown-menu a:focus-visible {
+    color: var(--bone);
+    background: var(--petrol);
+  }
+
+  .nav-dropdown-menu a:hover .arrow,
+  .nav-dropdown-menu a:focus-visible .arrow {
+    translate: 3px -2px;
+  }
+}
+
 .header-cta {
   background-image: linear-gradient(102deg, var(--petrol) 0 49.5%, var(--coal) 50% 100%);
   background-position: 100% 50%;
@@ -563,6 +615,10 @@
 
   .mobile-menu[open] nav a:nth-child(5) {
     animation-delay: 140ms;
+  }
+
+  .mobile-menu[open] nav a:nth-child(6) {
+    animation-delay: 175ms;
   }
 }
 

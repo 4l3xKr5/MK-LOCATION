@@ -4,7 +4,7 @@
 Date : 2026-09-07. Acceptée / LOCKED. Catalogue et demandes traitées manuellement, avec e-mail, WhatsApp et téléphone. Le choix utilisateur exclut réservation/paiement/admin. À reconsidérer uniquement sur demande d’évolution métier.
 
 ## D002 — Direction artistique
-Date : 2026-09-07. Acceptée / LOCKED. Conserver et affiner MK / DEPLOYED. L’arborescence approuvée prévaut sur les anciens libellés Prestige/Zone/Contact du chapitre DA : navigation finale Matériel, Comment ça marche, Livraison, Chauffeur, Demander. Les contrastes et tailles s’adaptent à l’accessibilité.
+Date : 2026-09-07, mise à jour explicite le 2026-09-08. Acceptée / LOCKED. Conserver et affiner MK / DEPLOYED. L’arborescence approuvée prévaut sur les anciens libellés Prestige/Zone/Contact du chapitre DA : navigation finale Accueil, Matériel, Comment ça marche, Livraison, Chauffeur, Demander. Les contrastes et tailles s’adaptent à l’accessibilité.
 
 ## D003 — Socle statique
 Date : 2026-09-07. Acceptée / LOCKED par demande d’implémentation du plan. Astro/TypeScript/CSS et Netlify Forms. Le petit parc et la confirmation manuelle ne justifient pas un backend métier, des comptes ou un CMS. Conséquence : dépendance Netlify pour la réception, notification à configurer et à vérifier réellement avant publication.
