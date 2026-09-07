@@ -4,6 +4,24 @@
 
 La préversion est locale. Aucun compte Netlify, domaine, destinataire, abonnement ou remote Git n’a été créé. L’ouverture nécessite les faits et accès réels détenus par MK.
 
+## Préversion sur Vercel — diagnostic du 7 septembre 2026
+
+L’utilisateur a ensuite créé le remote GitHub et déployé main sur Vercel. Au diagnostic, main est toujours au commit de fondation 03aa643 : le code du site n’a pas encore été envoyé. Un redéploiement de cette même révision ne peut pas afficher le site.
+
+Le correctif à publier comprend les commits de la préversion et vercel.json. Ce fichier fixe le preset Astro, l’installation npm ci, le build npm run build et le dossier de sortie dist. Astro statique ne nécessite pas d’adaptateur Vercel. Les en-têtes HTTP auparavant décrits dans netlify.toml sont également déclarés pour Vercel.
+
+Après autorisation de l’intégration main et publication, vérifier dans le projet Vercel :
+
+- dépôt 4l3xKr5/MK-LOCATION et branche de production main ;
+- Root Directory à la racine du dépôt, sans sous-dossier ; Node.js 24.x ;
+- PUBLIC_SITE_MODE=preview, PUBLIC_FORMS_ENABLED=false et PUBLIC_SITE_URL=https://mk-location.vercel.app ;
+- nouvelle révision contenant package.json, src/pages/index.astro et vercel.json ;
+- build terminé, réponse 200 de l’accueil et des fiches, assets chargés, 404 inconnue, noindex conservé et envoi désactivé.
+
+Les paramètres du compte Vercel n’ont pas été inspectés pendant ce diagnostic. La réception Netlify Forms ne fonctionne pas automatiquement sur un hébergement Vercel : garder l’envoi désactivé, puis choisir et vérifier l’intégration de réception avant toute collecte réelle. Le reste de ce guide décrit la cible Netlify initialement prévue.
+
+Sources : [Astro sur Vercel](https://docs.astro.build/en/guides/deploy/vercel/) et [configuration Vercel](https://vercel.com/docs/project-configuration/vercel-json).
+
 ## 1. Valider les contenus
 
 MK fournit et confirme :

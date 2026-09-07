@@ -6,6 +6,8 @@ Astro statique, TypeScript strict, CSS personnalisé, npm et lockfile. Composant
 ## Hébergement et formulaires
 Netlify est la cible du build dist. Deux formulaires HTML statiques nommés location/chauffeur avec attributs Netlify lorsque l’envoi est explicitement activé. POST application/x-www-form-urlencoded incluant form-name et honeypot. Détection et notification e-mail à activer dans le compte Netlify de MK. Nom du champ e-mail : email pour Reply-To. Le filtrage, le stockage et la sanitisation sont gérés par Netlify ; les règles métier sont confirmées manuellement par MK.
 
+Suite au déploiement Vercel signalé par l’utilisateur, la préversion statique peut aussi être hébergée sur Vercel avec vercel.json : preset Astro, npm ci, npm run build, sortie dist et mêmes en-têtes de sécurité. Aucun adaptateur SSR n’est nécessaire. Cela ne migre pas la réception Netlify Forms : PUBLIC_FORMS_ENABLED doit rester false sur Vercel tant qu’un service compatible n’est pas implémenté et vérifié.
+
 ## Modes
 Préversion par défaut : noindex/nofollow, pas de sitemap public, bannière explicite, photos provisoires, contact absent si non configuré et envoi désactivé. PUBLIC_FORMS_ENABLED permet uniquement un test d’intégration sur Netlify dûment configuré ; l’environnement local ne prétend pas fournir ce service.
 Production : PUBLIC_SITE_MODE=production ; contrôle bloquant avant build sur domaine, contacts, envoi activé, statut des tarifs/contenus, photos et textes légaux approuvés. Ce contrôle empêche une publication accidentelle du squelette.

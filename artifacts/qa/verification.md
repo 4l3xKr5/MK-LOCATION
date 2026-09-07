@@ -80,3 +80,11 @@ MK doit fournir et valider :
 4. Identité juridique, textes légaux et conditions de location, accès et conservation/suppression des demandes.
 
 Il faudra ensuite détecter les deux formulaires sur Netlify, configurer les notifications et prouver pour chacun l’enregistrement réel puis la réception dans la boîte MK. Suivre [le guide de mise en service](../../docs/DEPLOYMENT.md), compléter la recette réelle et relancer le contrôle production avant ouverture.
+
+## Complément — préparation Vercel, 7 septembre 2026 à 20:27
+
+Après le signalement utilisateur, git fetch et git ls-remote confirment que GitHub contient uniquement main au commit 03aa643, sans package.json ni src/pages. Le site complet est encore local. Ajout de vercel.json pour expliciter le preset Astro, npm ci, npm run build, dist et les en-têtes HTTP ; aucune modification des pages ni des formulaires.
+
+Contrôles relancés : lint réussi, check sans erreur/avertissement/indication, 9 tests unitaires réussis, build de 17 pages réussi. JSON lu sans erreur ; dist/index.html et dist/location/mini-pelle/index.html présents. Les tests navigateur et Lighthouse ci-dessus restent ceux de la recette applicative initiale, sans nouveau lancement pour ce changement de configuration.
+
+La validation du build dans le compte Vercel et des routes publiques reste en attente de publication du code. Aucun push ni intégration main effectué ; la configuration du compte n’a pas été inspectée. Les formulaires doivent rester désactivés sur cet hébergement.

@@ -63,3 +63,5 @@ Captures, avec le serveur 4321 actif : `node scripts/capture-qa.mjs`. Réexport 
 ## Mise en service
 
 Suivre [le guide de mise en service](docs/DEPLOYMENT.md). `npm run check:production` doit échouer tant que les informations réelles manquent. Ne pas positionner les indicateurs d’approbation pour contourner ce contrôle. Les mises à jour d’offres passent par le catalogue et un nouveau build.
+
+Pour la préversion Vercel signalée après cette livraison, vercel.json configure Astro, npm ci, npm run build et dist. Le diagnostic et les réglages sont dans le même guide : GitHub main doit contenir le code applicatif, encore local au moment du diagnostic. Garder le mode preview et les formulaires désactivés ; Netlify Forms nécessite une autre intégration pour recevoir des demandes depuis Vercel.

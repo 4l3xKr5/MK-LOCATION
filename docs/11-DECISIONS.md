@@ -20,3 +20,8 @@ Date : 2026-09-07. Implémentation isolée dans codex/mk-location-v1-20260907, w
 
 ## D007 — Autorisation de coder
 Date : 2026-09-07. Acceptée. La demande utilisateur « PLEASE IMPLEMENT THIS PLAN » donne l’autorisation explicite de réaliser le plan et de coder la préversion après le cadrage. Elle ne résout pas les informations métier absentes ni ne prétend valider un envoi réel.
+
+## D008 — Diagnostic GitHub / Vercel
+Date : 2026-09-07. L’utilisateur signale avoir publié sur GitHub et Vercel, avec une 404. Vérification distante : origin pointe désormais vers https://github.com/4l3xKr5/MK-LOCATION.git ; seule main est publiée au commit 03aa643, contenant la fondation sans package.json ni pages Astro. Les commits applicatifs d724546 et 5826854 restent locaux sur la branche de tâche. Le code manquant dans la branche déployée explique l’absence de site à servir.
+
+Préparation locale : configuration explicite Vercel pour la préversion statique et documentation des réglages. L’intégration main et le push de correction restent à autoriser ; aucun réglage du compte Vercel n’a été inspecté ni modifié. L’envoi Netlify Forms demeure désactivé sur Vercel. Un changement de service de réception est une décision distincte, à confirmer avant la collecte réelle.
