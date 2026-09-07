@@ -16,7 +16,7 @@ Préversion : périmètre fonctionnel et visuel implémenté, documents rédigé
 | SEO | Titles/descriptions uniques, canoniques sur domaine réel, partage, noindex préversion, sitemap production et 404 |
 | Confidentialité | Pas de secret ni données personnelles dans assets/URL/storage/logs ; collecte désactivée par défaut |
 
-## Commandes à implémenter
+## Commandes disponibles
 - npm ci
 - npm run lint
 - npm run check

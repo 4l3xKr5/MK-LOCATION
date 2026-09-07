@@ -20,3 +20,8 @@ Ces résultats concernent la préversion. Publication publique BLOQUÉE par les 
 
 ## Première tranche vérifiable
 Mini-pelle documentée → demande préremplie → choix chauffeur → date/durée/commune → coordonnées/récapitulatif. Les retours conservent la saisie, les erreurs sont accessibles, les échecs HTTP ne conduisent pas à la confirmation et la préversion désactivée ne soumet rien. Les tests de transport interceptés sont marqués simulés ; ils ne valident pas la boîte MK.
+
+## État de livraison — 2026-09-07
+Phases 1 à 5 terminées pour la préversion locale : 17 pages, deux parcours de demande, cadrage et guide de mise en service. Lint, types, 9 tests unitaires, 20 scénarios navigateur et build réussis. Performance Lighthouse mobile : 100 sur accueil et mini-pelle, CLS 0. Preuves et limites dans [le rapport de recette](../artifacts/qa/verification.md).
+
+Phase 6 en attente des contenus et accès MK. L’enregistrement réel sur Netlify et la notification e-mail restent à vérifier ; aucun envoi réel ni déploiement public réalisé.
