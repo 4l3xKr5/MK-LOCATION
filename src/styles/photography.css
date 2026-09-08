@@ -1,0 +1,289 @@
+/* MK / DEPLOYED: complete subjects, mineral light, existing editorial frame. */
+.equipment-visual.visual--editorial,
+.index-preview .visual--editorial,
+.focus-image .visual--editorial,
+.chauffeur-teaser .visual--editorial {
+  aspect-ratio: auto;
+  background: var(--mineral);
+}
+
+.visual--editorial::before {
+  display: none;
+}
+
+.visual--editorial::after {
+  z-index: 1;
+  color: var(--bone);
+  opacity: 1;
+}
+
+.visual--editorial picture {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+}
+
+.visual--editorial img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.editorial-caption {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px;
+  color: var(--bone);
+  background: var(--coal);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.editorial-caption .mono {
+  font-size: 12px;
+}
+
+.visual--compact::before,
+.visual--compact::after {
+  display: none;
+}
+
+/* Each equipment remains recognizable on touch devices and without scripting. */
+.equipment-index .index-row {
+  position: relative;
+  grid-template-columns: 24px 96px minmax(0, 1fr) auto 22px;
+  gap: 14px;
+}
+
+.index-thumbnail {
+  width: 96px;
+  min-width: 0;
+}
+
+.index-thumbnail .equipment-visual {
+  aspect-ratio: 3 / 2;
+}
+
+.index-name > strong {
+  font-size: clamp(23px, 2.05vw, 32px);
+}
+
+.index-rate {
+  font-size: 30px;
+}
+
+.index-rate small {
+  display: block;
+  margin: 5px 0 0;
+}
+
+.index-preview {
+  top: 140px;
+}
+
+.focus-stamp {
+  top: 20px;
+  left: -8px;
+}
+
+/* The photograph occupies its own column so large titles never hide machinery. */
+.hero--editorial {
+  background: var(--bone);
+}
+
+.hero--editorial .hero-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  column-gap: 30px;
+  row-gap: 36px;
+  min-height: 0;
+  padding-block: 30px 44px;
+}
+
+.hero--editorial .hero-topline {
+  grid-column: 1 / -1;
+}
+
+.hero--editorial h1 {
+  grid-column: 1;
+  grid-row: 2;
+  align-self: center;
+  margin: 0;
+  font-size: clamp(60px, 6.5vw, 104px);
+  line-height: 0.96;
+}
+
+.hero--editorial .hero-visual {
+  position: relative;
+  inset: auto;
+  grid-column: 2;
+  grid-row: 2;
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  margin: 0;
+  align-self: center;
+}
+
+.hero--editorial .hero-visual::after {
+  display: block;
+}
+
+.hero--editorial .hero-bottom {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+
+.hero--editorial .hero-copy {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.hero--editorial .hero-actions {
+  margin: 0;
+}
+
+.hero--editorial .hero-equipment-link {
+  margin: 0;
+}
+
+/* Shared session, calmer Petrol setting for the chauffeur service. */
+.chauffeur-hero--editorial > .container {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  column-gap: 36px;
+  row-gap: 32px;
+  min-height: 0;
+  padding-bottom: 60px;
+}
+
+.chauffeur-hero--editorial > .container > .eyebrow {
+  grid-column: 1 / -1;
+}
+
+.chauffeur-hero--editorial h1 {
+  grid-column: 1;
+  grid-row: 2;
+  margin: 0;
+  font-size: clamp(64px, 7.3vw, 116px);
+  align-self: end;
+}
+
+.chauffeur-hero--editorial .equipment-visual {
+  position: relative;
+  inset: auto;
+  grid-column: 2;
+  grid-row: 2 / 4;
+  align-self: center;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  aspect-ratio: auto;
+}
+
+.chauffeur-hero--editorial .equipment-visual::after {
+  display: block;
+}
+
+.chauffeur-hero--editorial .chauffeur-hero-bottom {
+  grid-column: 1;
+  grid-row: 3;
+  padding: 0;
+  margin: 0;
+  gap: 24px;
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  .equipment-index {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .equipment-index .index-row {
+    grid-template-columns: 20px 72px minmax(0, 1fr) auto;
+    gap: 10px;
+    padding-inline: 8px;
+  }
+
+  .index-thumbnail {
+    width: 72px;
+  }
+
+  .equipment-index .index-row > .arrow {
+    display: none;
+  }
+
+  .index-name > strong { font-size: 23px; }
+  .index-rate { font-size: 26px; }
+  .hero--editorial .hero-copy { display: block; }
+  .hero--editorial .hero-actions { margin-top: 20px; }
+  .hero--editorial h1 { font-size: 6.5vw; }
+}
+
+@media (max-width: 767px) {
+  .hero--editorial .hero-stage,
+  .chauffeur-hero--editorial > .container {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    padding-block: 26px 32px;
+  }
+
+  .hero--editorial h1 {
+    font-size: clamp(56px, 12.1vw, 92px);
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .hero--editorial .hero-visual {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .hero--editorial .hero-bottom {
+    grid-row: 4;
+  }
+
+  .hero--editorial .hero-copy {
+    display: block;
+    width: 100%;
+  }
+
+  .hero--editorial .hero-actions {
+    margin-top: 20px;
+  }
+
+  .equipment-index .index-row {
+    grid-template-columns: 76px minmax(0, 1fr) auto;
+    gap: 12px;
+    padding: 22px 0;
+  }
+
+  .index-thumbnail {
+    width: 76px;
+  }
+
+  .equipment-index .index-number,
+  .equipment-index .index-row > .arrow {
+    display: none;
+  }
+
+  .index-name > strong { font-size: clamp(23px, 5.7vw, 30px); }
+  .index-name > small { font-size: 10px; }
+  .index-need { font-size: 12px; }
+  .index-rate { font-size: 27px; }
+  .index-rate small { font-size: 11px; }
+  .index-footnote { font-size: 12px; }
+
+  .editorial-caption { padding: 6px 10px; }
+  .visual--editorial::after { top: 14px; left: 14px; width: 24px; height: 24px; }
+  .focus-stamp { top: 12px; }
+
+  .chauffeur-hero--editorial { padding-top: 0; }
+  .chauffeur-hero--editorial h1 { font-size: clamp(60px, 14vw, 100px); }
+  .chauffeur-hero--editorial .equipment-visual { grid-column: 1; grid-row: 3; }
+  .chauffeur-hero--editorial .chauffeur-hero-bottom { grid-column: 1; grid-row: 4; }
+}

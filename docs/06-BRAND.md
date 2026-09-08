@@ -13,4 +13,4 @@ Matériel : Bone/Coal/Signal, plus direct. Chauffeur : Coal/Petrol, plus calme. 
 Catalogue anonyme à six cartes identiques, folklore chantier, luxe ostentatoire, témoignages ou chiffres inventés, images présentant un faux parc et surcharge de mouvement.
 
 ## Assets
-Aucun logo ni photographie réelle fourni au démarrage. Signature typographique « MK LOCATION ». Les emplacements visuels sont une composition graphique de préversion, explicitement annoncée comme telle.
+Aucun logo ni photographie réelle fourni au démarrage. Signature typographique « MK LOCATION ». Le flyer reçu le 8 septembre 2026 sert de référence des catégories de matériel. Son logo métallique noir/or ne remplace pas la DA MK / DEPLOYED verrouillée. Six illustrations photographiques originales remplacent les compositions graphiques de préversion : béton minéral, lumière latérale naturelle, ombres charbon/pétrole, machines entièrement cadrées. Les couleurs physiques des matériels sont conservées. Les créations sont explicitement légendées et ne représentent pas un parc réel vérifié.

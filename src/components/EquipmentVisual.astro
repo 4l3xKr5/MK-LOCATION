@@ -1,12 +1,18 @@
 ---
 import type { VisualKind } from '../data/catalog';
-import { publication } from '../config/site';
-interface Props { kind?: VisualKind; slug?: string; index?: string; dark?: boolean; class?: string; priority?: boolean }
-const { kind = 'excavator', slug = 'mini-pelle', index = '01', dark = false, class: className = '', priority = false } = Astro.props;
+import { Picture } from 'astro:assets';
+import { getEquipmentImage } from '../data/equipment-images';
+import { publication, site } from '../config/site';
+interface Props { kind?: VisualKind; slug?: string; index?: string; dark?: boolean; class?: string; priority?: boolean; compact?: boolean; decorative?: boolean; sizes?: string }
+const { kind = 'excavator', slug = 'mini-pelle', index = '01', dark = false, class: className = '', priority = false, compact = false, decorative = false, sizes = '(max-width: 767px) calc(100vw - 40px), (max-width: 1200px) 50vw, 760px' } = Astro.props;
 const photo = publication.offerPhotos[slug]?.find((item) => item.verified);
+const editorial = site.preview && !photo ? getEquipmentImage(slug) : undefined;
 ---
-<figure class:list={['equipment-visual', `visual--${kind}`, className, { 'visual--dark': dark, 'visual--photo': !!photo }]}>
-  {photo ? <img src={photo.src} alt={photo.alt} width="1200" height="900" loading={priority ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : 'auto'} decoding="async" /> : <>
+<figure class:list={['equipment-visual', `visual--${kind}`, className, { 'visual--dark': dark, 'visual--photo': !!photo || !!editorial, 'visual--editorial': !!editorial, 'visual--compact': compact }]} aria-hidden={decorative ? 'true' : undefined} data-image-provenance={editorial?.provenance}>
+  {photo ? <img src={photo.src} alt={decorative ? '' : photo.alt} width="1200" height="900" loading={priority ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : 'auto'} decoding="async" /> : editorial ? <>
+    <Picture src={editorial.src} alt={decorative ? '' : editorial.alt} formats={['avif', 'webp']} fallbackFormat="jpg" widths={compact ? [160, 320, 480] : [480, 768, 1200, 1536]} sizes={compact ? '96px' : sizes} loading={priority ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : 'auto'} decoding="async" quality={80} />
+    {!compact && <figcaption class="editorial-caption"><span class="mono" aria-hidden="true">MK / {index}</span><span>Visuel d’illustration</span></figcaption>}
+  </> : <>
     <span class="visual-index" aria-hidden="true">{index}</span>
     <svg class="equipment-drawing" viewBox="0 0 800 560" fill="none" aria-hidden="true">
       <ellipse cx="421" cy="476" rx="293" ry="17" fill="currentColor" opacity=".07" />

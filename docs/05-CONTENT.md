@@ -14,7 +14,7 @@ Les fichiers d’origine Concept_entreprise_MK_Location.md, MK-Location_Dossier-
 | Utilitaire 80 €/jour, caution 500 € | Documenté, publication UNKNOWN | MK confirme base, volume et modalités |
 | Porsche, longue durée, livraison | Conditions/tarifs UNKNOWN | Sur demande, sans montant ou promesse inventée |
 | Téléphone, e-mail et WhatsApp | Manquant / UNKNOWN | MK fournit ; liens absents avant configuration |
-| Photos, logo | Manquant / UNKNOWN | MK fournit photos du parc ; cadres graphiques provisoires clairement identifiés, signature typographique |
+| Photos, logo | Flyer de référence reçu le 08/09/2026 ; photos réelles UNKNOWN | Six illustrations photographiques générées à la demande utilisateur, légendées et séparées des photos vérifiées ; signature typographique conservée |
 | Zone, frais de livraison, retrait éventuel | Partiel / UNKNOWN | Annay et alentours ; modalités à convenir |
 | Identité légale, location, confidentialité | Manquant / UNKNOWN | MK fournit et valide avant publication |
 | Textes d’interface et présentation | Rédigeable / OPEN | Rédaction directe depuis les faits disponibles |
@@ -24,3 +24,8 @@ Les prix sources apparaissent uniquement comme références de préversion tant 
 
 ## Collecte avant ouverture
 MK fournit les coordonnées et l’identité juridique, confirme Annay et son secteur, les tarifs/HT-TTC, toutes les modalités nécessaires, les caractéristiques et les droits des photos. MK valide les textes juridiques, la finalité, les destinataires et la conservation. L’intégrateur ajoute les valeurs, exécute le contrôle de préparation production et conserve la preuve de validation.
+
+## Série visuelle — 8 septembre 2026
+La demande explicite autorise six créations originales et leur intégration à la préversion. Le flyer fournit les silhouettes de la voiture noire, du camion benne blanc, de la mini-pelle jaune/noire et de la bétonnière tractable. Le plateau et l’utilitaire proviennent du catalogue documenté ; leurs modèles restent inconnus. Les créations ne certifient ni le véhicule exact, ni ses caractéristiques, ni l’existence du lieu photographique. La mention « Visuel d’illustration » accompagne les grands visuels. Les images réelles vérifiées restent prioritaires ; les créations générées ne sont jamais inscrites comme vérifiées dans publication.json.
+
+Analyse, emplacements et prompts : [dossier des visuels](../artifacts/visuals/direction-et-emplacements.md).
