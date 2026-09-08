@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 const offers = ['mini-pelle', 'camion-benne', 'betonniere', 'plateau-remorque-35t', 'utilitaire'];
 
-test('les six offres affichent une image chargée, entière et légendée sur mobile et desktop', async ({ page }) => {
+test('les six offres affichent une image entière sans bandeau ni repère sur mobile et desktop', async ({ page }) => {
   test.setTimeout(60000);
   await page.emulateMedia({ reducedMotion: 'reduce' });
   for (const width of [320, 1440]) {
@@ -17,11 +17,10 @@ test('les six offres affichent une image chargée, entière et légendée sur mo
       await expect(figure.locator('source[type="image/avif"]')).toHaveAttribute('srcset', /480w.*1536w/);
       await expect.poll(() => img.evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth > 0)).toBe(true);
       const photoBounds = await img.boundingBox();
-      const captionBounds = await figure.locator('figcaption').boundingBox();
       expect(photoBounds).not.toBeNull();
-      expect(captionBounds).not.toBeNull();
       expect(photoBounds!.width / photoBounds!.height).toBeCloseTo(1.5, 1);
-      expect(captionBounds!.y).toBeGreaterThanOrEqual(photoBounds!.y + photoBounds!.height - 1);
+      await expect(figure.locator('figcaption')).toHaveCount(0);
+      expect(await figure.evaluate((el) => getComputedStyle(el, '::after').display)).toBe('none');
       expect(await img.evaluate((el) => getComputedStyle(el).objectFit)).toBe('contain');
     }
   }

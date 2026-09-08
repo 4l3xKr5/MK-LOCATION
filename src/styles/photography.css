@@ -11,10 +11,8 @@
   display: none;
 }
 
-.visual--editorial::after {
-  z-index: 1;
-  color: var(--bone);
-  opacity: 1;
+.visual--photo::after {
+  display: none;
 }
 
 .visual--editorial picture {
@@ -27,23 +25,6 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-}
-
-.editorial-caption {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 14px;
-  color: var(--bone);
-  background: var(--coal);
-  font-size: 12px;
-  line-height: 1.5;
-}
-
-.editorial-caption .mono {
-  font-size: 12px;
 }
 
 .visual--compact::before,
@@ -82,11 +63,6 @@
 
 .index-preview {
   top: 140px;
-}
-
-.focus-stamp {
-  top: 20px;
-  left: -8px;
 }
 
 /* The photograph occupies its own column so large titles never hide machinery. */
@@ -129,7 +105,7 @@
 }
 
 .hero--editorial .hero-visual::after {
-  display: block;
+  display: none;
 }
 
 .hero--editorial .hero-bottom {
@@ -186,7 +162,7 @@
 }
 
 .chauffeur-hero--editorial .equipment-visual::after {
-  display: block;
+  display: none;
 }
 
 .chauffeur-hero--editorial .chauffeur-hero-bottom {
@@ -277,10 +253,6 @@
   .index-rate { font-size: 27px; }
   .index-rate small { font-size: 11px; }
   .index-footnote { font-size: 12px; }
-
-  .editorial-caption { padding: 6px 10px; }
-  .visual--editorial::after { top: 14px; left: 14px; width: 24px; height: 24px; }
-  .focus-stamp { top: 12px; }
 
   .chauffeur-hero--editorial { padding-top: 0; }
   .chauffeur-hero--editorial h1 { font-size: clamp(60px, 14vw, 100px); }
