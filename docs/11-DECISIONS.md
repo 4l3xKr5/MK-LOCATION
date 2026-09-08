@@ -4,7 +4,7 @@
 Date : 2026-09-07. Acceptée / LOCKED. Catalogue et demandes traitées manuellement, avec e-mail, WhatsApp et téléphone. Le choix utilisateur exclut réservation/paiement/admin. À reconsidérer uniquement sur demande d’évolution métier.
 
 ## D002 — Direction artistique
-Date : 2026-09-07. Acceptée / LOCKED. Conserver et affiner MK / DEPLOYED. L’arborescence approuvée prévaut sur les anciens libellés Prestige/Zone/Contact du chapitre DA : navigation finale Matériel, Comment ça marche, Livraison, Chauffeur, Demander. Les contrastes et tailles s’adaptent à l’accessibilité.
+Date : 2026-09-07, mise à jour explicite le 2026-09-08. Acceptée / LOCKED. Conserver et affiner MK / DEPLOYED. L’arborescence approuvée prévaut sur les anciens libellés Prestige/Zone/Contact du chapitre DA : navigation finale Accueil, Matériel, Comment ça marche, Livraison, Chauffeur, Demander. Les contrastes et tailles s’adaptent à l’accessibilité.
 
 ## D003 — Socle statique
 Date : 2026-09-07. Acceptée / LOCKED par demande d’implémentation du plan. Astro/TypeScript/CSS et Netlify Forms. Le petit parc et la confirmation manuelle ne justifient pas un backend métier, des comptes ou un CMS. Conséquence : dépendance Netlify pour la réception, notification à configurer et à vérifier réellement avant publication.
@@ -28,3 +28,6 @@ Préparation locale : configuration explicite Vercel pour la préversion statiqu
 
 ## D009 — Autorisation d’intégration et de publication
 Date : 2026-09-07. L’utilisateur répond « oui » à la demande d’intégrer le site dans main et de pousser sur GitHub pour relancer Vercel. Autorisation reçue pour publier la branche de tâche, conserver un tag de sauvegarde, intégrer main et publier cette intégration. Le déploiement porte sur la préversion non indexée avec envoi désactivé ; il ne valide pas les contenus métier manquants ni une réception de demandes.
+
+## D010 — Signature de mouvement premium
+Date : 2026-09-08. Acceptée / PREFERRED à la suite de la demande explicite d’animations CSS modernes, fluides et immersives. Le mouvement prolonge MK / DEPLOYED par des masques à pan coupé, une profondeur graphique sobre, des micro-interactions mécaniques et des transitions d’état continues. Les textes ne dépendent jamais d’une animation ni d’une baisse d’opacité ; les boucles ambiantes, le scroll-jacking, le déplacement du texte par parallaxe et GSAP restent exclus. L’amélioration progressive, la fluidité mobile et `prefers-reduced-motion` priment sur l’effet.

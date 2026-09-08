@@ -9,8 +9,8 @@ const mobileHref = pathname === '/chauffeur' ? '/chauffeur#demande' : selected ?
 const mobileLabel = pathname === '/chauffeur' ? 'Demander une prestation' : 'Demander une location';
 ---
 <footer class="site-footer">
-  <div class="container footer-top"><div><a class="footer-brand" href="/">MK<span aria-hidden="true">/</span> <span>LOCATION</span></a><p>Du besoin au terrain.<br />Annay & alentours.</p></div><p class="eyebrow footer-purpose">Matériel de chantier<br />Véhicules & utilitaires<br />Porsche avec chauffeur</p></div>
-  <div class="container footer-grid">
+  <div class="container footer-top" data-reveal="wipe"><div><a class="footer-brand" href="/">MK<span aria-hidden="true">/</span> <span>LOCATION</span></a><p>Du besoin au terrain.<br />Annay & alentours.</p></div><p class="eyebrow footer-purpose">Matériel de chantier<br />Véhicules & utilitaires<br />Porsche avec chauffeur</p></div>
+  <div class="container footer-grid" data-reveal>
     <div><h2>Le matériel</h2>{equipment.map((item) => <a href={`/location/${item.slug}`}>{item.name}</a>)}</div>
     <div><h2>Organiser une location</h2><a href="/comment-ca-marche">Comment ça marche</a><a href="/livraison-annay">Livraison & zone</a><a href="/chauffeur">Avec chauffeur</a><a href="/demande-location">Faire une demande</a></div>
     <div><h2>Contact direct</h2>{site.phoneHref && <a href={site.phoneHref}>{site.phone}</a>}{site.email && <a href={`mailto:${site.email}`}>{site.email}</a>}{site.whatsapp && <a href={whatsappLink()} target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>}{!site.phoneHref && !site.email && !site.whatsapp && <p>Coordonnées à venir.<br /><a href="/informations-preversion">À propos de cette préversion</a></p>}</div>

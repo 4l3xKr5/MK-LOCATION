@@ -37,12 +37,61 @@ test('navigation mobile au clavier, fermeture Échap et réduction des animation
   const open = page.getByRole('button', { name: 'Ouvrir le menu' });
   await open.focus(); await page.keyboard.press('Enter');
   await expect(page.getByRole('dialog')).toBeVisible();
+  await expect(page.getByRole('navigation', { name: 'Navigation mobile' }).getByRole('link', { name: 'Accueil', exact: true })).toHaveAttribute('aria-current', 'page');
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
   await page.keyboard.press('Shift+Tab');
   expect(await page.evaluate(() => !!document.activeElement?.closest('dialog'))).toBe(true);
   await page.keyboard.press('Escape');
   await expect(page.getByRole('dialog')).not.toBeVisible(); await expect(open).toBeFocused();
   expect(await page.locator('.hero h1').evaluate((el) => getComputedStyle(el).animationName)).toBe('none');
+  expect(await page.locator('[data-reveal]').evaluateAll((elements) => elements.every((element) => getComputedStyle(element).opacity === '1'))).toBe(true);
+});
+test('la navigation principale expose Accueil et indique la page active', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
+  const navigation = page.getByRole('navigation', { name: 'Navigation principale' });
+  await expect(navigation.getByRole('link', { name: 'Accueil', exact: true })).toHaveAttribute('aria-current', 'page');
+  await page.goto('/location');
+  await expect(navigation.getByRole('link', { name: 'Accueil', exact: true })).not.toHaveAttribute('aria-current', 'page');
+  await expect(navigation.locator('[data-nav-dropdown]')).toHaveClass(/is-active/);
+});
+test('le sous-menu Matériel est accessible au clavier et mène aux équipements', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
+  const menu = page.locator('[data-nav-dropdown]');
+  const trigger = menu.locator('summary');
+  await trigger.focus();
+  await trigger.press('Enter');
+  await expect(menu).toHaveAttribute('open', '');
+  await expect(menu.getByRole('link', { name: 'Voir tout le matériel', exact: true })).toHaveAttribute('href', '/location');
+  await expect(menu.getByRole('link', { name: 'Mini-pelle', exact: true })).toHaveAttribute('href', '/location/mini-pelle');
+  await trigger.press('Escape');
+  await expect(menu).not.toHaveAttribute('open', '');
+  await expect(trigger).toBeFocused();
+  await page.goto('/location/mini-pelle');
+  await expect(menu).toHaveClass(/is-active/);
+  await trigger.click();
+  await expect(menu.getByRole('link', { name: 'Mini-pelle', exact: true })).toHaveAttribute('aria-current', 'page');
+});
+test('signature de mouvement, reveal au scroll et aperçu matériel restent fluides', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
+  await expect(page.locator('html')).toHaveClass(/motion-ready/);
+
+  const focus = page.locator('.mini-focus .focus-copy');
+  await expect(focus).not.toHaveClass(/is-revealed/);
+  await focus.scrollIntoViewIfNeeded();
+  await expect(focus).toHaveClass(/is-revealed/);
+  await expect.poll(async () => focus.evaluate((element) => getComputedStyle(element).clipPath)).toContain('100% 100%');
+
+  const button = page.getByRole('link', { name: 'Voir le matériel' });
+  const shutterBefore = await button.evaluate((element) => getComputedStyle(element, '::before').transform);
+  await button.hover();
+  await expect.poll(async () => button.evaluate((element) => getComputedStyle(element, '::before').transform)).not.toBe(shutterBefore);
+
+  await page.locator('[data-index-item="camion-benne"]').hover();
+  await expect(page.locator('[data-index-preview="camion-benne"]')).toBeVisible();
+  await expect(page.locator('[data-index-item="camion-benne"]')).toHaveClass(/is-active/);
 });
 test('WhatsApp contextualisé et téléphone utilisent la configuration de test', async ({ page }) => {
   await page.goto('/location/mini-pelle');
@@ -69,6 +118,12 @@ test('lecture et formulaire HTML complet sans JavaScript', async ({ browser }) =
   await page.setViewportSize({ width: 375, height: 812 });
   await expect(page.getByRole('navigation', { name: 'Navigation sans JavaScript' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Ouvrir le menu' })).not.toBeVisible();
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('http://127.0.0.1:4322/');
+  const materialMenu = page.locator('[data-nav-dropdown]');
+  await materialMenu.locator('summary').click();
+  await expect(materialMenu).toHaveAttribute('open', '');
+  await expect(materialMenu.getByRole('link', { name: 'Mini-pelle', exact: true })).toHaveAttribute('href', '/location/mini-pelle');
   await context.close();
 });
 test('les actions mobiles gardent le contexte sans effacer une demande', async ({ page }) => {

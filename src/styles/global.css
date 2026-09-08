@@ -355,6 +355,85 @@ main:focus {
 .desktop-nav a[aria-current]::after {
   width: 100%;
 }
+.nav-dropdown {
+  position: relative;
+}
+.nav-dropdown > summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  list-style: none;
+  touch-action: manipulation;
+}
+.nav-dropdown > summary::-webkit-details-marker {
+  display: none;
+}
+.nav-dropdown > summary::before {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--signal);
+}
+.nav-dropdown-caret {
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+}
+.nav-dropdown-menu {
+  position: absolute;
+  z-index: 40;
+  top: calc(100% + 14px);
+  left: -20px;
+  width: 285px;
+  margin: 0;
+  padding: 8px 0;
+  list-style: none;
+  color: var(--bone);
+  background: var(--coal);
+  border-top: 2px solid var(--signal);
+  outline: 1px solid #3e4840;
+}
+.nav-dropdown-menu li {
+  margin: 0;
+  padding: 0;
+}
+.desktop-nav .nav-dropdown-menu a {
+  min-height: 48px;
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) 18px;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  color: inherit;
+  font-size: 14px;
+  line-height: 1.25;
+}
+.nav-dropdown-menu .mono {
+  color: var(--mineral);
+  font-size: 10px;
+}
+.nav-dropdown-menu .arrow {
+  width: 17px;
+  justify-self: end;
+}
+.nav-dropdown-menu a[aria-current] {
+  color: var(--signal);
+  box-shadow: inset 2px 0 var(--signal);
+}
+.nav-dropdown.is-active > summary::before,
+.nav-dropdown[open] > summary::before {
+  width: 100%;
+}
 .header-cta {
   display: flex;
   gap: 22px;

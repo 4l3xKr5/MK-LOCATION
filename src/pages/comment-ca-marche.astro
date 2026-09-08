@@ -18,7 +18,7 @@ const questions = [
 ---
 <Layout title="Comment louer du matériel chez MK" description="Choisissez votre matériel, indiquez vos dates et organisez la mise à disposition avec MK Location, à Annay et alentours.">
   <section class="container page-heading"><p class="eyebrow"><span class="signal-square"></span> MK / Comment ça marche</p><h1>DU BESOIN<br /><span class="text-outline">AU TERRAIN.</span></h1><p class="lead">Vous préparez votre projet.<br />Nous organisons la location avec vous.</p></section>
-  <section class="container process-section" aria-label="Les étapes de location">{steps.map((step, i) => <article class="process-row"><span class="process-number">0{i + 1}</span><h2>{step.title}</h2><p>{step.text}</p></article>)}</section>
-  <section class="container section-pad faq-section"><div><p class="eyebrow"><span class="signal-square"></span> Avant de louer</p><h2>LES QUESTIONS<br /><span class="text-outline">PRATIQUES.</span></h2></div><FAQ items={questions} /></section>
-  <section class="section-coal"><div class="container closing-cta"><p class="eyebrow">La première étape</p><h2>DITES-NOUS<br />CE QU’IL VOUS FAUT.</h2><Button href="/demande-location">Demander une location</Button></div></section>
+  <section class="container process-section" aria-label="Les étapes de location">{steps.map((step, i) => <article class="process-row" data-reveal><span class="process-number">0{i + 1}</span><h2>{step.title}</h2><p>{step.text}</p></article>)}</section>
+  <section class="container section-pad faq-section"><div data-reveal="wipe"><p class="eyebrow"><span class="signal-square"></span> Avant de louer</p><h2>LES QUESTIONS<br /><span class="text-outline">PRATIQUES.</span></h2></div><div data-reveal="right" data-reveal-delay="1"><FAQ items={questions} /></div></section>
+  <section class="section-coal"><div class="container closing-cta"><p class="eyebrow" data-reveal>La première étape</p><h2 data-reveal="wipe">DITES-NOUS<br />CE QU’IL VOUS FAUT.</h2><div data-reveal="right" data-reveal-delay="1"><Button href="/demande-location">Demander une location</Button></div></div></section>
 </Layout>
