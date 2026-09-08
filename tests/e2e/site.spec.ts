@@ -84,7 +84,7 @@ test('signature de mouvement, reveal au scroll et aperçu matériel restent flui
   await expect(focus).toHaveClass(/is-revealed/);
   await expect.poll(async () => focus.evaluate((element) => getComputedStyle(element).clipPath)).toContain('100% 100%');
 
-  const button = page.getByRole('link', { name: 'Voir le matériel' });
+  const button = page.locator('.poster-actions .button');
   const shutterBefore = await button.evaluate((element) => getComputedStyle(element, '::before').transform);
   await button.hover();
   await expect.poll(async () => button.evaluate((element) => getComputedStyle(element, '::before').transform)).not.toBe(shutterBefore);

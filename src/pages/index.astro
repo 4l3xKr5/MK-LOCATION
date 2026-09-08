@@ -4,17 +4,10 @@ import Button from '../components/Button.astro';
 import Arrow from '../components/Arrow.astro';
 import EquipmentVisual from '../components/EquipmentVisual.astro';
 import EquipmentIndex from '../components/EquipmentIndex.astro';
+import PosterHero from '../components/PosterHero.astro';
 ---
 <Layout title="Location de matériel et véhicules à Annay" description="Mini-pelle, camion benne, bétonnière, plateau et utilitaire : MK Location organise votre location à Annay et alentours, principalement par livraison.">
-  <section class="hero hero--editorial">
-    <div class="container hero-stage">
-      <div class="hero-topline"><p class="eyebrow"><span class="signal-square"></span> Annay & alentours</p><p class="eyebrow">Location courte & longue durée</p></div>
-      <h1>MATÉRIEL.<br />VÉHICULES.<br /><span>À DISPOSITION.</span></h1>
-      <EquipmentVisual class="hero-visual" priority />
-      <div class="hero-bottom"><div class="hero-copy"><p>Le bon équipement.<br />Au lieu convenu. Pour votre projet.</p><div class="hero-actions"><Button href="/location">Voir le matériel</Button><a class="hero-secondary" href="/demande-location">Demander une location <Arrow diagonal /></a></div></div><a class="hero-equipment-link" href="/location/mini-pelle"><span class="mono">À découvrir / 01</span><strong>LA MINI-PELLE</strong><Arrow diagonal /></a></div>
-    </div>
-    <div class="hero-strip"><span>MATÉRIEL DE CHANTIER</span><span class="strip-plus" aria-hidden="true">+</span><span>VÉHICULES & UTILITAIRES</span><span class="strip-plus" aria-hidden="true">+</span><span>LIVRAISON SELON MODALITÉS</span><span class="strip-arrow" aria-hidden="true">↗</span></div>
-  </section>
+  <PosterHero />
   <section class="container section-pad" id="materiel"><div class="section-heading"><div data-reveal="wipe"><p class="eyebrow"><span class="signal-square"></span> MK / Le parc</p><h2>À CHAQUE BESOIN,<br /><span class="text-outline">SON MATÉRIEL.</span></h2></div><p data-reveal="right" data-reveal-delay="1">Terrasser, transporter, préparer.<br />Cinq équipements, un interlocuteur.<br />Trouvez celui qui vous convient.</p></div><EquipmentIndex /></section>
   <section class="delivery-story"><div class="container delivery-grid"><div data-reveal="left"><p class="eyebrow">MK / Du besoin au terrain</p><h2>VOUS AVEZ<br />LE PROJET.<br /><span>ON VOUS<br />L’AMÈNE.</span></h2></div><div class="delivery-copy" data-reveal="right" data-reveal-delay="1"><div class="route-diagram" aria-hidden="true"><span>MK</span><i></i><Arrow /><i></i><span>VOUS</span></div><p class="lead">La location s’organise<br />autour de votre besoin.</p><p>MK Location fonctionne principalement par livraison sur le lieu convenu. Vous nous indiquez le matériel, la durée et la commune. Nous précisons ensemble les modalités.</p><ol class="delivery-steps"><li><span>01</span> Vous choisissez.</li><li><span>02</span> On s’organise.</li><li><span>03</span> Le matériel arrive selon l’accord convenu.</li></ol><Button href="/comment-ca-marche" variant="light">Comment ça marche</Button></div></div></section>
   <section class="container section-pad mini-focus"><div class="focus-image" data-reveal="left"><EquipmentVisual /></div><div class="focus-copy" data-reveal="wipe" data-reveal-delay="1"><p class="eyebrow"><span class="signal-square"></span> Focus / Mini-pelle</p><h2>LE DÉBUT<br />DE QUELQUE<br /><span class="text-outline">CHOSE.</span></h2><p>Un aménagement extérieur, un besoin de terrassement. La mini-pelle vous accompagne, avec ou sans chauffeur selon la formule choisie.</p><a class="text-link" href="/location/mini-pelle">Découvrir la mini-pelle <Arrow diagonal /></a></div></section>
